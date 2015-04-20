@@ -1,0 +1,2 @@
+class HeightWeight < Reminder
+end
