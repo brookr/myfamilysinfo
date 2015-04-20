@@ -19,16 +19,16 @@ end
 begin
   15.times do
     User.new.tap do |u|
-      u.email = Faker::Internet.email
+      u.email = FFaker::Internet.email
       u.password = 'password'
-      u.name = Faker::Name.name
+      u.name = FFaker::Name.name
       u.save!
     end
   end
 
   45.times do
     Kid.new.tap do |k|
-      k.name = Faker::Name.first_name
+      k.name = FFaker::Name.first_name
       k.save!
     end
   end
@@ -42,7 +42,7 @@ begin
   Kid.all.each do |k|
     rand(4).times do
       kid = k.reminders.create
-      kid.name = Faker::Product.product_name
+      kid.name = FFaker::Product.product_name
       kid.save!
     end
   end
