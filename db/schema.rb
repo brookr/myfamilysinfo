@@ -11,18 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140205195154) do
+ActiveRecord::Schema.define(version: 20150420202024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "kids", force: true do |t|
+  create_table "kids", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "dob"
+    t.string   "insurance_id"
+    t.string   "nurse_phone"
   end
 
-  create_table "relationships", force: true do |t|
+  create_table "relationships", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "role"
     t.datetime "created_at"
@@ -33,16 +36,19 @@ ActiveRecord::Schema.define(version: 20140205195154) do
   add_index "relationships", ["kid_id"], name: "index_relationships_on_kid_id", using: :btree
   add_index "relationships", ["user_id"], name: "index_relationships_on_user_id", using: :btree
 
-  create_table "reminders", force: true do |t|
+  create_table "reminders", force: :cascade do |t|
     t.string   "name"
     t.integer  "kid_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "date"
+    t.string   "type"
+    t.string   "data"
   end
 
   add_index "reminders", ["kid_id"], name: "index_reminders_on_kid_id", using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
