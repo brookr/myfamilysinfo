@@ -28,6 +28,12 @@ class Api::V1::KidsController < Api::V1::BaseController
     end
   end
 
+  def destroy
+    @kid = Kid.find(params[:id])
+    @kid.delete
+    head 204
+  end
+
   protected
 
   def kid_params
