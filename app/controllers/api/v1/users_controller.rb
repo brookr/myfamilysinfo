@@ -14,6 +14,7 @@ class API::V1::UsersController < ApplicationController
     if user.update(user_params)
       render json: user, status: 200
     end
+  else
   end
 
   private
