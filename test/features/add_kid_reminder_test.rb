@@ -2,6 +2,8 @@ require "test_helper"
 
 feature "Manage your kids reminders" do
   scenario "View your kids reminders" do
+    skip
+    
     sign_in(:mother)
     #save_and_open_page
     page.must_have_content "Jenny"

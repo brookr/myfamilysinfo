@@ -49,7 +49,7 @@ class CreatingEventsTest < ActionDispatch::IntegrationTest
     assert_equal 201, response.status
     assert_equal Mime::JSON, response.content_type
     event = json(response.body)
-    assert_equal api_ev1_kid_events_url(event[:id]), response.location
+    assert_equal api_v1_kid_events_url(event[:id]), response.location
     assert_equal 'Bumps on arm', event[:description]
   end
 

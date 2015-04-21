@@ -1,6 +1,8 @@
 module API
   module V1
-    class KidsController < Api::V1::BaseController
+    class KidsController < API::V1::BaseController
+      skip_before_action :authenticate_user!
+
       def index
         # TODO: scope kids to current user
         @kids = Kid.all

@@ -29,8 +29,6 @@ group :development, :test do
   gem 'launchy'
   gem 'minitest-rails-capybara'
   gem 'pry-rails'
-  gem 'pry-rescue'
-  gem 'pry-stack_explorer'
   gem 'quiet_assets'
   gem 'rails_layout'
   gem 'simplecov'

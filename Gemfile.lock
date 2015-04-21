@@ -102,7 +102,6 @@ GEM
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
-    interception (0.5)
     jbuilder (2.2.13)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -173,12 +172,6 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
-    pry-rescue (1.4.1)
-      interception (>= 0.5)
-      pry
-    pry-stack_explorer (0.4.9.2)
-      binding_of_caller (>= 0.7)
-      pry (>= 0.9.11)
     pundit (1.0.0)
       activesupport (>= 3.0.0)
     quiet_assets (1.1.0)
@@ -290,8 +283,6 @@ DEPENDENCIES
   omniauth-twitter
   pg
   pry-rails
-  pry-rescue
-  pry-stack_explorer
   pundit
   quiet_assets
   rails
