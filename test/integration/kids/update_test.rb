@@ -15,4 +15,16 @@ class UpdatingTest < ActionDispatch::IntegrationTest
     json_kid = JSON.parse(response.body, symbolize_names: true)
     assert_equal json_kid[:name], kid.name
   end
+
+  test 'kids cannot be updated with invalid data' do
+    kid = kids(:Jimmy)
+
+    kid.dob = Date.today + 10
+    update_kid(kid)
+
+    assert_equal 422, response.status
+    json_error = JSON.parse(response.body, symbolize_names: true)
+    assert_equal 'Validation failed', json_error[:message]
+    assert_equal 'invalid_field', json_error[:errors][0][:code]
+  end
 end
