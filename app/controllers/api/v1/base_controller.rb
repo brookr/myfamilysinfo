@@ -18,9 +18,17 @@ module API
 
       rescue_from ActionController::RoutingError, with: :render_404
       rescue_from ActiveRecord::RecordNotFound, with: :render_404
-      
+
       rescue_from ActiveRecord::RecordInvalid do |exception|
         render_422(exception.record)
+      end
+
+      def render_404
+        render object_not_found_error
+      end
+
+      def object_not_found_error
+        { json: { "message":"Object does not exist" }, status: 404 }
       end
 
       def render_422(object)
@@ -41,14 +49,6 @@ module API
           error_object[:errors] << new_err
         end
         { json: error_object, status: 422 }
-      end
-
-      def render_404
-        render object_not_found_error
-      end
-
-      def object_not_found_error
-        { json: { "message":"Object does not exist" }, status: 404 }
       end
     end
   end
