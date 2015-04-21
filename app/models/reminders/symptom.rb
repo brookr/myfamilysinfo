@@ -1,0 +1,2 @@
+class Symptom < Reminder
+end

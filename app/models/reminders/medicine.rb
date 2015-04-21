@@ -1,0 +1,2 @@
+class Medicine < Reminder
+end
