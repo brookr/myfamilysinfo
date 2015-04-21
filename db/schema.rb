@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420202024) do
+ActiveRecord::Schema.define(version: 20150421140137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,9 +41,13 @@ ActiveRecord::Schema.define(version: 20150420202024) do
     t.integer  "kid_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "date"
+    t.string   "datetime"
     t.string   "type"
-    t.string   "data"
+    t.string   "amount"
+    t.string   "temperature"
+    t.string   "height"
+    t.string   "weight"
+    t.string   "description"
   end
 
   add_index "reminders", ["kid_id"], name: "index_reminders_on_kid_id", using: :btree
