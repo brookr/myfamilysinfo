@@ -12,7 +12,7 @@ module API
       def create
         event = Reminder.new(event_params)
         event.save!
-        render json: event, serializer: EventSerializer, status: 201, location: api_v1_kid_events_url(event[:id])
+        render json: event, serializer: EventSerializer, status: 201
       end
 
       def update
