@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   # validates_presence_of :username
   # validates_uniqueness_of :username
 
-  has_many :relationships
-  has_many :kids, through: :relationships
+  # has_many :relationships
+  has_many :kids#, through: :relationships
   has_many :reminders, through: :kids
 
   def self.sort_by_role(user)
@@ -55,4 +55,3 @@ class User < ActiveRecord::Base
     end
   end
 end
-
