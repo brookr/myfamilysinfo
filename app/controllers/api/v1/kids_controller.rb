@@ -16,28 +16,20 @@ module API
 
       def create
         @kid = Kid.new(kid_params)
-        if @kid.save
-          render json: @kid, status: 201
-        else
-          render invalid_object_error(@kid)
-        end
+        @kid.save!
+        render json: @kid, status: 201
       end
 
       def update
         @kid = Kid.find(params[:id])
-        if @kid.update(kid_params)
-          render json: @kid, status: 201
-        else
-          render invalid_object_error(@kid)
-        end
+        @kid.update!(kid_params)
+        render json: @kid, status: 201
       end
 
       def destroy
         @kid = Kid.find(params[:id])
         @kid.delete
         head 204
-      rescue
-        render object_not_found_error
       end
 
       protected
