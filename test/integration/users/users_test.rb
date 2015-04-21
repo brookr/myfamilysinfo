@@ -19,8 +19,4 @@ class UsersTest < ActionDispatch::IntegrationTest
 
 
   end
-
-  test 'it should update the user' do
-
-  end
 end
