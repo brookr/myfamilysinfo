@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20150420202024) do
   enable_extension "plpgsql"
 
   create_table "kids", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "dob"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20150420202024) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "role"
+    t.string   "role",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "kid_id"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20150420202024) do
   add_index "relationships", ["user_id"], name: "index_relationships_on_user_id", using: :btree
 
   create_table "reminders", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.integer  "kid_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -49,22 +49,22 @@ ActiveRecord::Schema.define(version: 20150420202024) do
   add_index "reminders", ["kid_id"], name: "index_reminders_on_kid_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "username"
+    t.string   "name",                   limit: 255
+    t.string   "provider",               limit: 255
+    t.string   "uid",                    limit: 255
+    t.string   "username",               limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
