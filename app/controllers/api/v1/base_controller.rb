@@ -9,9 +9,10 @@ module API
       private
 
       def authenticate_user_from_token!
-        user_token = params[:auth_token].presence
-        user = user_token && User.find_by_authentication_token(user_token.to_s)
-        if user
+        authenticate_with_http_token do |token, options|
+          @token = token || params[:token]
+        end
+        if user = User.find_by(authentication_token: @token)
           sign_in user, store: false
         else
           render_401
