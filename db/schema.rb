@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20150421051441) do
     t.string   "insurance_id"
     t.string   "nurse_phone"
     t.integer  "parent_id"
-    t.datetime "dob"
+    t.date     "dob"
   end
 
   add_index "kids", ["parent_id"], name: "index_kids_on_parent_id", using: :btree
