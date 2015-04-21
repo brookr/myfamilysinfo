@@ -1,6 +1,8 @@
 module API
   module V1
     class EventsController < ApplicationController
+      skip_before_action :authenticate_user!
+
       def index
         @kid = Kid.find(params[:kid_id])
         events = @kid.reminders
