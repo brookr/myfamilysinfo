@@ -6,7 +6,7 @@ module API
       def index
         @kid = Kid.find(params[:kid_id])
         events = @kid.reminders
-        render json: events, each_serializer: EventSerializer, status: 200
+        render json: events, status: 200
       end
 
       def create
