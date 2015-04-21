@@ -18,6 +18,9 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def json(body)
+    JSON.parse(body, symbolize_names: true)
+  end
 end
 
 def sign_in(role = :editor)
