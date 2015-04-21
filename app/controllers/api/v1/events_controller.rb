@@ -11,28 +11,20 @@ module API
 
       def create
         event = Reminder.new(event_params)
-        if event.save
-          render json: event, status: 201, location: api_v1_kid_events_url(event[:id])
-        else
-          render invalid_object_error(event)
-        end
+        event.save!
+        render json: event, status: 201, location: api_v1_kid_events_url(event[:id])
       end
 
       def update
         event = Reminder.find(params[:id])
-        if event.update(event_params)
-          render json: event, status: 200
-        else
-          render invalid_object_error(event)
-        end
+        event.update!(event_params)
+        render json: event, status: 200
       end
 
       def destroy
         event = Reminder.find(params[:id])
         event.destroy!
         render nothing: true, status: 204
-      rescue
-        render object_not_found_error
       end
 
       private
