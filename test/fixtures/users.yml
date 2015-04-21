@@ -1,6 +1,7 @@
 liam:
   email: hokouri@gmail.com
   encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  authentication_token: token
 
 mother:
   email: mother@example.com
