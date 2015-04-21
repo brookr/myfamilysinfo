@@ -274,7 +274,7 @@ Required fields:
 - `name` - required for type `medicine`
 - `temperature` - required for type `temperature`, must be decimal number
 - `height` or `weight` - at least one required for type `heightweight`
-- `description` - associated with type `symptom`
+- `description` - required for type `symptom`
 
 Allowed fields:
 
