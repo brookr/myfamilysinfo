@@ -1,41 +1,30 @@
 class API::V1::SessionsController < Devise::SessionsController
-  before_filter :authenticate_user!, except: [:create]
-  before_filter :ensure_params_exist, except: [:destroy]
+  before_filter :ensure_params_exist
   respond_to :json
 
-def create
-  respond_to do |format|
-    format.json {
-      resource = resource_from_credentials
-      return invalid_login_attempt unless resource
-
-      if resource.valid_password?(params[:password])
-        render json: { auth_token: resource.authentication_token }, success: true, status: :created
-      else
-        invalid_login_attempt
-      end
-    }
+  def create
+    user = user_from_credentials
+    return invalid_login_attempt unless user
+    render json: { auth_token: user.authentication_token }, success: true, status: :created
   end
-end
 
   protected
 
   def ensure_params_exist
     return unless params[:email].blank? || params[:password].blank?
-    render json: { message: "missing user_login parameter" }, status: 422
+    invalid_login_attempt
   end
 
   def invalid_login_attempt
-    render json: { message: "Error with your login or password" }, status: 401
+    render json: { "message":"Incorrect username or password" }, status: 401
   end
 
-  def resource_from_credentials
+  def user_from_credentials
     data = { email: params[:email] }
-    if res = resource_class.find_for_database_authentication(data)
-      if res.valid_password?(params[:password])
-        res
+    if user = User.find_for_database_authentication(data)
+      if user.valid_password?(params[:password])
+        user
       end
     end
   end
 end
-
