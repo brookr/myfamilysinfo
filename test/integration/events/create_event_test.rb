@@ -53,6 +53,86 @@ class CreatingEventsTest < ActionDispatch::IntegrationTest
     assert_equal 'Bumps on arm', event[:description]
   end
 
+  test 'does not create a symptom without a description' do
+    post "/api/v1/kids/#{@kid.id}/events",
+         { type: 'Symptom', description: nil }.to_json,
+         { 'Accept' => 'application/json',
+           'Content-Type' => 'application/json' }
+
+    assert_equal 422, response.status
+  end
+
+  test 'create a new temperature event' do
+    post "/api/v1/kids/#{@kid.id}/events",
+         { type: 'Temperature', temperature: '98.6' }.to_json,
+         { 'Accept' => 'application/json',
+           'Content-Type' => 'application/json' }
+
+    assert_equal 201, response.status
+    assert_equal Mime::JSON, response.content_type
+    event = json(response.body)
+    assert_equal api_v1_kid_events_url(event[:id]), response.location
+    assert_equal '98.6', event[:temperature]
+  end
+
+  test 'does not create a temperature event without a temperature' do
+    post "/api/v1/kids/#{@kid.id}/events",
+         { type: 'Temperature', temperature: nil }.to_json,
+         { 'Accept' => 'application/json',
+           'Content-Type' => 'application/json' }
+
+    assert_equal 422, response.status
+  end
+
+  test 'create a new HeightWeight event with a height and a weight' do
+    post "/api/v1/kids/#{@kid.id}/events",
+         { type: 'HeightWeight', height: "4'2", weight: "100 lbs" }.to_json,
+         { 'Accept' => 'application/json',
+           'Content-Type' => 'application/json' }
+
+    assert_equal 201, response.status
+    assert_equal Mime::JSON, response.content_type
+    event = json(response.body)
+    assert_equal api_v1_kid_events_url(event[:id]), response.location
+    assert_equal '100 lbs', event[:weight]
+    assert_equal "4'2", event[:height]
+  end
+
+  test 'create a HeightWeight event without a height' do
+    post "/api/v1/kids/#{@kid.id}/events",
+         { type: 'HeightWeight', weight: '100 lbs' }.to_json,
+         { 'Accept' => 'application/json',
+           'Content-Type' => 'application/json' }
+
+    assert_equal 201, response.status
+    assert_equal Mime::JSON, response.content_type
+    event = json(response.body)
+    assert_equal api_v1_kid_events_url(event[:id]), response.location
+    assert_equal '100 lbs', event[:weight]
+  end
+
+  test 'create a HeightWeight event without a weight' do
+    post "/api/v1/kids/#{@kid.id}/events",
+         { type: 'HeightWeight', height: "4'2" }.to_json,
+         { 'Accept' => 'application/json',
+           'Content-Type' => 'application/json' }
+
+    assert_equal 201, response.status
+    assert_equal Mime::JSON, response.content_type
+    event = json(response.body)
+    assert_equal api_v1_kid_events_url(event[:id]), response.location
+    assert_equal "4'2", event[:height]
+  end
+
+  test 'does not create a HeightWeight event without either a height or a weight' do
+    post "/api/v1/kids/#{@kid.id}/events",
+         { type: "HeightWeight" }.to_json,
+         { 'Accept' => 'application/json',
+           'Content-Type' => 'application/json' }
+
+    assert_equal 422, response.status
+  end
+
   test 'does not create event without a type' do
     post "/api/v1/kids/#{@kid.id}/events",
          { type: nil }.to_json,
@@ -61,6 +141,4 @@ class CreatingEventsTest < ActionDispatch::IntegrationTest
 
     assert_equal 422, response.status
   end
-
-
 end
