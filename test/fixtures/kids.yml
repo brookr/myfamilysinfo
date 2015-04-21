@@ -3,9 +3,28 @@
 
 Jimmy:
   name: Jimmy
+  dob: <%= DateTime.new(2005, 5, 4) %>
+  insurance_id: UWD-012345678-04
+  nurse_phone: 555-555-5555
+  parent: mother
+
 Jenny:
   name: Jenny
+  dob: <%= DateTime.new(2004, 3, 2) %>
+  insurance_id: UWD-012345678-03
+  nurse_phone: 555-555-5555
+  parent: mother
+
 Lola:
   name: Lola
+  dob: <%= DateTime.new(2007, 6, 2) %>
+  insurance_id: UWD-012345678-05
+  nurse_phone: 555-555-5555
+  parent: mother
+
 Billy:
   name: Billy
+  dob: <%= DateTime.new(2011, 7, 6) %>
+  insurance_id: UWD-012345678-06
+  nurse_phone: 555-555-5555
+  parent: mother

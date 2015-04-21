@@ -9,7 +9,7 @@ Bundler.require(:default, Rails.env)
 module Myfamilysinfo
   class Application < Rails::Application
     config.generators do |g|
-      g.test_framework :mini_test, :spec => true, :fixture => true
+      g.test_framework :minitest, :spec => true, :fixture => true
     end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
