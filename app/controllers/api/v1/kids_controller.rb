@@ -19,6 +19,13 @@ class Api::V1::KidsController < Api::V1::BaseController
     end
   end
 
+  def update
+    @kid = Kid.find(params[:id])
+    if @kid.update(kid_params)
+      render json: @kid, status: 201
+    end
+  end
+
   protected
 
   def kid_params

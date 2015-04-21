@@ -4,7 +4,7 @@ def update_kid(kid)
   patch "/api/v1/kids/#{kid.id}", kid.attributes, { 'Accept' => Mime::JSON }
 end
 
-class CreatingTest < ActionDispatch::IntegrationTest
+class UpdatingTest < ActionDispatch::IntegrationTest
   test 'kids can be updated' do
     kid = kids(:Jimmy)
 
