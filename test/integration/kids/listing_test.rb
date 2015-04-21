@@ -1,10 +1,11 @@
 require 'test_helper'
+require 'api_helper'
 
 class ListingTest < ActionDispatch::IntegrationTest
   test 'the index endpoint returns a list of kids' do
     kid_names = Kid.all.map(&:name)
 
-    get '/api/v1/kids', {}, 'Accept' => Mime::JSON
+    get_kids
     assert_equal 200, response.status
 
     json_response = JSON.parse(response.body, symbolize_names: true)

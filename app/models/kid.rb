@@ -6,8 +6,4 @@ class Kid < ActiveRecord::Base
   accepts_nested_attributes_for :relationships
 
   validates :name, presence: true
-  validates_each :dob do |record, attr, _|
-    next if record.dob.nil?
-    record.errors.add(attr, 'cannot be in the future') if record.dob >= Date.today
-  end
 end
