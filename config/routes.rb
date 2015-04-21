@@ -13,7 +13,7 @@ Myfamilysinfo::Application.routes.draw do
   resources :kids, only: [:destroy]
   resources :reminders, only: [:destroy, :update]
 
-  namespace :api do
+  namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
       resources :kids, except:[:edit, :new] do
         resources :events, except: [:show, :edit, :new]

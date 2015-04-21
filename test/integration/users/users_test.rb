@@ -6,7 +6,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 
   def test_user_creation_with_valid_data
     post '/api/v1/users', { user: {
-      name: 'me@example.com',
+      email: 'test123@example.com',
       password: 'password'
       } }.to_json,
       { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
@@ -15,6 +15,7 @@ class UsersTest < ActionDispatch::IntegrationTest
     assert_equal Mime::JSON, response.Content-Type
 
     user = json(response.body)
+    assert_refute(body.empty)
     assert_equal user_url(user[:id]), response.location
 
 

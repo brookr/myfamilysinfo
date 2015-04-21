@@ -1,6 +1,7 @@
 class API::V1::UsersController < ApplicationController
-  # skip_before_filter :verify_authenticity_token
-  # protect_from_forgery with: :null_session
+  skip_before_filter :verify_authenticity_token, :authenticate_user_from_token!,
+                     :authenticate_user!
+
   def create
     user = User.new(user_params)
     if user.save
@@ -10,6 +11,6 @@ class API::V1::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.permit(:email, :password)
   end
 end
