@@ -12,7 +12,7 @@ There are a set number of possible errors to receive as a response, with associa
 If you attempt to access a resource ID that does not exist, you will receive this error as a response.
 
 Response:
-	
+
 	Status: 404
 	Body:
 	{ "message":"Object does not exist." }
@@ -24,7 +24,7 @@ Response:
 
 	Status: 401 Unauthorized
 	Body:
-	{ "message":"Authentication token required" }
+	{ "message":"Authentication token missing or invalid" }
 
 ## Invalid JSON Data
 If your JSON object is incorrectly formatted, you will receive this error as a response.
@@ -41,6 +41,7 @@ Possible values for the "code" key of an error are:
 
 - `missing_field`
 - `unique_field`
+- `incorrect_field`
 
 Response:
 
@@ -205,6 +206,7 @@ Success response:
 
 #Event
 
+All Event endpoints require an authentication token.
 Events have four possible types, and certain fields will only apply to a specific event type.
 
 **Medicine**: `medicine`
@@ -261,7 +263,7 @@ Success Response:
 			"description":"bumps on arm"
 		}
 	]
-	
+
 ###Creating an event
 
 POST `/api/v1/kids/:kid_id/events`
