@@ -4,4 +4,9 @@ class Api::V1::KidsController < ApplicationController
     @kids = Kid.all
     render json: @kids, status: 200
   end
+
+  def show
+    @kid = Kid.find(params[:id])
+    render json: @kid, status: 200
+  end
 end
