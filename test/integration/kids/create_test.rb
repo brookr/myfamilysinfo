@@ -5,7 +5,7 @@ class CreatingTest < ActionDispatch::IntegrationTest
   test 'kids can be created' do
     kid = Kid.new(name: 'Bobby Joe')
 
-    create_kid(kid)
+    create_kid kid, users(:mother).authentication_token
 
     assert_equal 201, response.status
     json_kid = JSON.parse(response.body, symbolize_names: true)
@@ -15,7 +15,7 @@ class CreatingTest < ActionDispatch::IntegrationTest
   test 'kids cannot be created without a name' do
     kid = Kid.new
 
-    create_kid(kid)
+    create_kid kid, users(:mother).authentication_token
 
     assert_equal 422, response.status
     json_error = JSON.parse(response.body, symbolize_names: true)

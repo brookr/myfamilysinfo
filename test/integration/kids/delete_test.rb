@@ -1,7 +1,6 @@
 require 'test_helper'
 require 'api_helper'
 
-
 class DeletingTest < ActionDispatch::IntegrationTest
   test 'kids can be deleted' do
     kid = kids(:Jimmy)

@@ -1,9 +1,9 @@
 def get_kid(kid, auth_token=nil)
-  get "/api/v1/kids/#{kid.id}", build_headers(auth_token)
+  get "/api/v1/kids/#{kid.id}", {}, build_headers(auth_token)
 end
 
 def get_kids(auth_token=nil)
-  get "/api/v1/kids", build_headers(auth_token)
+  get "/api/v1/kids", {}, build_headers(auth_token)
 end
 
 def create_kid(kid, auth_token=nil)
@@ -20,6 +20,6 @@ end
 
 def build_headers(auth_token)
   headers = { 'Accept' => Mime::JSON }
-  headers['Authorization'] = "Token token=#{auth_token}" unless auth_token.nil?
+  headers[:authorization] = "Token token=#{auth_token}" unless auth_token.nil?
   headers
 end
