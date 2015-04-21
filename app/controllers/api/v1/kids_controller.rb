@@ -1,4 +1,4 @@
-class Api::V1::KidsController < ApplicationController
+class Api::V1::KidsController < Api::V1::BaseController
   def index
     # TODO: scope kids to current user
     @kids = Kid.all
@@ -14,6 +14,8 @@ class Api::V1::KidsController < ApplicationController
     @kid = Kid.new(kid_params)
     if @kid.save
       render json: @kid, status: 201
+    else
+      render invalid_object_error(@kid)
     end
   end
 
