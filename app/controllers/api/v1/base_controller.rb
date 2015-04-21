@@ -23,6 +23,22 @@ module API
         render_422(exception.record)
       end
 
+      def render_400
+        render bad_request_error
+      end
+
+      def bad_request_error
+        { json: { "message": "Problems parsing JSON"}, status: 400 }
+      end
+
+      def render_401
+        render unauthorized_error
+      end
+
+      def unauthorized_error
+        { json: { "message": "Authentication token missing or invalid"}, status: 401 }
+      end
+
       def render_404
         render object_not_found_error
       end
