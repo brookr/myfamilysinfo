@@ -22,6 +22,6 @@ class Api::V1::KidsController < Api::V1::BaseController
   protected
 
   def kid_params
-    params.require(:kid).permit(:name, :dob, :insurance_id, :nurse_phone)
+    params.permit(:name, :dob, :insurance_id, :nurse_phone)
   end
 end
