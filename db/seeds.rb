@@ -12,38 +12,46 @@
 # puts 'user: ' << user.email
 require 'ffaker'
 
-def sample_text
-  #(1..10).map{|i|"<p>#{Faker::HTMLIpsum.fancy_string}</p>"}.join
+
+15.times do
+  User.new.tap do |u|
+    u.email = FFaker::Internet.email
+    u.password = 'password'
+    u.name = FFaker::Name.name
+    u.save!
+  end
 end
 
-begin
-  15.times do
-    User.new.tap do |u|
-      u.email = FFaker::Internet.email
-      u.password = 'password'
-      u.name = FFaker::Name.name
-      u.save!
-    end
+45.times do
+  Kid.new.tap do |k|
+    k.name = FFaker::Name.first_name
+    k.save!
   end
+end
 
-  45.times do
-    Kid.new.tap do |k|
-      k.name = FFaker::Name.first_name
-      k.save!
+kid = Kid.all.each do |k|
+  user = User.order( 'RANDOM()' ).first
+  user.kids << k
+end
+
+Kid.all.each do |k|
+  rand(4).times do
+    r = k.reminders.create
+    r.type = ["Medicine", "Temperature", "HeightWeight", "Symptom"][(rand * 4).to_i]
+    case r.type
+    when "Medicine"
+      r.name = FFaker::Product.product_name
+    when "Temperature"
+      r.temperature = (rand*10) + 95
+    when "HeightWeight"
+      if [true, false][(rand*2).to_i]
+        r.height = "#{((rand*2).to_i + 4)}'#{((rand*12).to_i)}\""
+      else
+        r.weight = (rand*100).to_i + 8
+      end
+    when "Symptom"
+      description = FFaker::Product.product_name
     end
-  end
-
-  kid = Kid.all.each do |k|
-    user = User.order( 'RANDOM()' ).first
-    relation = Relationship.create ({kid: k, user: user})
-    relation.save!
-  end
-
-  Kid.all.each do |k|
-    rand(4).times do
-      kid = k.reminders.create
-      kid.name = FFaker::Product.product_name
-      kid.save!
-    end
+    r.save!
   end
 end
