@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
+
 
   before_save :ensure_authentication_token
   def ensure_authentication_token
@@ -12,15 +12,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  # validates_presence_of :username
-  # validates_uniqueness_of :username
-
   has_many :relationships
-  has_many :kids, foreign_key: :parent_id #, through: :relationships
+  has_many :kids, foreign_key: :parent_id
   has_many :reminders, through: :kids
 
   def self.sort_by_role(user)
-    roles = user.relationships.map { |relationship| relationship.role }
+    roles = user.relationships.map &:role
     roles.uniq do |role|
       user.relationships.select { |r| r.role == role }
     end

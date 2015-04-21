@@ -2,6 +2,10 @@ Myfamilysinfo::Application.routes.draw do
   root :to => "home#index"
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
+  devise_scope :user do
+    match '/api/v1/sessions', to: 'api/v1/sessions#create', via: :post
+  end
+
   get ':users/:id/', :to => "user#show"
 
   resource :user, { controller: :users, only: :show } do

@@ -1,7 +1,7 @@
 require 'test_helper'
 
 def update_kid(kid)
-  patch "/api/v1/kids/#{kid.id}", kid.attributes, { 'Accept' => Mime::JSON }
+  patch "/api/v1/kids/#{kid.id}", kid.attributes, 'Accept' => Mime::JSON
 end
 
 class UpdatingTest < ActionDispatch::IntegrationTest

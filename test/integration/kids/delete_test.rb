@@ -1,7 +1,7 @@
 require 'test_helper'
 
 def delete_kid(kid)
-  delete "/api/v1/kids/#{kid.id}", {}, { 'Accept' => Mime::JSON }
+  delete "/api/v1/kids/#{kid.id}", {}, 'Accept' => Mime::JSON
 end
 
 class DeletingTest < ActionDispatch::IntegrationTest

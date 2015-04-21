@@ -1,10 +1,22 @@
 module API
   module V1
     class BaseController < ApplicationController
-      before_filter :authenticate_user!
+      skip_before_action :verify_authenticity_token
+      before_action :authenticate_user_from_token!
+
       prepend_before_filter :get_auth_token
 
       private
+
+      def authenticate_user_from_token!
+        user_token = params[:auth_token].presence
+        user = user_token && User.find_by_authentication_token(user_token.to_s)
+        if user
+          sign_in user, store: false
+        else
+          render_401
+        end
+      end
 
       def default_serializer_options
         { root: false }
@@ -23,12 +35,28 @@ module API
         render_422(exception.record)
       end
 
+      def render_400
+        render bad_request_error
+      end
+
+      def bad_request_error
+        { json: { "message": "Problems parsing JSON"}, status: 400 }
+      end
+
+      def render_401
+        render unauthorized_error
+      end
+
+      def unauthorized_error
+        { json: { "message": "Authentication token missing or invalid"}, status: 401 }
+      end
+
       def render_404
         render object_not_found_error
       end
 
       def object_not_found_error
-        { json: { "message":"Object does not exist" }, status: 404 }
+        { json: { "message": "Object does not exist" }, status: 404 }
       end
 
       def render_422(object)
@@ -38,17 +66,20 @@ module API
       def invalid_object_error(object)
         error_object = { message: "Validation failed", errors: [] }
         object.errors.messages.each do |field, error|
-          new_err = {resource: object.class.to_s, field: field.to_s }
-          if error.first.match(/blank/)
-            new_err[:code] = 'missing_field'
-          elsif error.first.match(/taken/)
-            new_err[:code] = 'unique_field'
-          elsif error.first.match(/in the future/)
-            new_err[:code] = 'invalid_field'
-          end
+          new_err = { resource: object.class.to_s, field: field.to_s, code: invalid_object_error_code(error.first) }
           error_object[:errors] << new_err
         end
         { json: error_object, status: 422 }
+      end
+
+      def invalid_object_error_code(message)
+        if message.match(/blank/)
+          'missing_field'
+        elsif message.match(/taken/)
+          'unique_field'
+        elsif message.match(/in the future/)
+          'invalid_field'
+        end
       end
     end
   end

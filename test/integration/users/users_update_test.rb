@@ -21,7 +21,7 @@ class UsersTest < ActionDispatch::IntegrationTest
     }.to_json,
     'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s
 
-    assert_equal 500, response.status
+    assert_equal 422, response.status
   end
 
   test 'update with invalid password' do
@@ -31,6 +31,6 @@ class UsersTest < ActionDispatch::IntegrationTest
     }.to_json,
     'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s
 
-    assert_equal 500, response.status
+    assert_equal 422, response.status
   end
 end
