@@ -209,21 +209,21 @@ Success response:
 All Event endpoints require an authentication token.
 Events have four possible types, and certain fields will only apply to a specific event type.
 
-**Medicine**: `medicine`
+**Medicine**: `Medicine`
 
 - `name`
 - `amount`
 
-**Temperature**: `temperature`
+**Temperature**: `Temperature`
 
 - `temperature`
 
-**Height / Weight**: `heightweight`
+**Height / Weight**: `HeightWeight`
 
 - `height`
 - `weight`
 
-**Symptom**: `symptom`
+**Symptom**: `Symptom`
 
 - `description`
 
@@ -239,27 +239,27 @@ Success Response:
 		{
 			"id":"1",
 			"datetime":"20-04-2015T12:20:00",
-			"type":"medicine",
+			"type":"Medicine",
 			"name":"Advil",
 			"amount":"2 pills"
 		},
 		{
 			"id":"2",
 			"datetime":"20-04-2015T12:45:00",
-			"type":"temperature",
+			"type":"Temperature",
 			"temperature":"100.3"
 		},
 		{
 			"id":"3",
 			"datetime":"20-04-2015T12:55:00",
-			"type":"heightweight",
+			"type":"HeightWeight",
 			"height":"5'11",
 			"weight":"80lb"
 		},
 		{
 			"id":"4",
 			"datetime":"20-04-2015T13:00:00",
-			"type":"symptom",
+			"type":"Symptom",
 			"description":"bumps on arm"
 		}
 	]
@@ -271,21 +271,21 @@ POST `/api/v1/kids/:kid_id/events`
 Required fields:
 
 - `type`
-- `name` - required for type `medicine`
-- `temperature` - required for type `temperature`, must be decimal number
-- `height` or `weight` - at least one required for type `heightweight`
-- `description` - required for type `symptom`
+- `name` - required for type `Medicine`
+- `temperature` - required for type `Temperature`, must be decimal number
+- `height` or `weight` - at least one required for type `HeightWeight`
+- `description` - associated with type `Symptom`
 
 Allowed fields:
 
 - `type`
 - `datetime` - formatted as `dd-mm-yyyyThh:mm:ss`
-- `name` - associated with type `medicine`
-- `amount` - associated with type `medicine`
-- `temperature` - associated with type `temperature`
-- `height` - associated with type `heightweight`
-- `weight` - associated with type `heightweight`
-- `description` - associated with type `symptom`
+- `name` - associated with type `Medicine`
+- `amount` - associated with type `Medicine`
+- `temperature` - associated with type `Temperature`
+- `height` - associated with type `HeightWeight`
+- `weight` - associated with type `HeightWeight`
+- `description` - associated with type `Symptom`
 
 Success response:
 
@@ -294,7 +294,7 @@ Success response:
 	{
 		"id":"1",
 		"datetime":"20-04-2015T12:20:00",
-		"type":"medicine",
+		"type":"Medicine",
 		"name":"Advil",
 		"amount":"2 pills"
 	}
@@ -307,12 +307,12 @@ Allowed fields:
 
 - `type`
 - `datetime` - formatted as `dd-mm-yyyyThh:mm:ss`
-- `name` - associated with type `medicine`
-- `amount` - associated with type `medicine`
-- `temperature` - associated with type `temperature`
-- `height` - associated with type `heightweight`
-- `weight` - associated with type `heightweight`
-- `description` - associated with type `symptom`
+- `name` - associated with type `Medicine`
+- `amount` - associated with type `Medicine`
+- `temperature` - associated with type `Temperature`
+- `height` - associated with type `HeightWeight`
+- `weight` - associated with type `HeightWeight`
+- `description` - associated with type `Symptom`
 
 Success response:
 
@@ -321,7 +321,7 @@ Success response:
 	{
 		"id":"1",
 		"datetime":"20-04-2015T12:20:00",
-		"type":"medicine",
+		"type":"Medicine",
 		"name":"Advil",
 		"amount":"2 pills"
 	}

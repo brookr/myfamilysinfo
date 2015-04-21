@@ -3,20 +3,29 @@
 
 one:
   name: Advil
+  amount: 1 pill
   kid: Jenny
+  type: Medicine
 two:
-  name: Temperature
+  type: Temperature
   kid: Jimmy
+  temperature: '98.6'
 three:
   name: Tylenol
+  type: Medicine
+  amount: 2 pills
   kid: Lola
 four:
-  name: Tylenol
+  type: HeighWeight
   kid: Jenny
+  height: 4'11
+  weight: 110 lbs
 five:
-  name: Food
+  type: Symptom
+  description: Bumps on arms
   kid: Lola
 six:
-  name: Bumps on arms
+  type: Symptom
+  description: Bumps on legs
   kid: Jimmy
 
