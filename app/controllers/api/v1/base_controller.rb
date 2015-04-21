@@ -14,4 +14,8 @@ class Api::V1::BaseController < ApplicationController
     end
     { json: error_object, status: 422 }
   end
+
+  def object_not_found_error
+    { json: { "message":"Object does not exist" }, status: 404 }
+  end
 end

@@ -32,6 +32,8 @@ class Api::V1::KidsController < Api::V1::BaseController
     @kid = Kid.find(params[:id])
     @kid.delete
     head 204
+  rescue
+    render object_not_found_error
   end
 
   protected
