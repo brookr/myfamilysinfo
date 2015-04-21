@@ -1,6 +1,6 @@
 module API
   module V1
-    class EventsController < ApplicationController
+    class EventsController < API::V1::BaseController
       skip_before_action :authenticate_user!
 
       def index
@@ -14,7 +14,7 @@ module API
         if event.save
           render json: event, status: 201, location: api_v1_kid_events_url(event[:id])
         else
-          render json: event.errors, status: 422
+          render invalid_object_error(event)
         end
       end
 
@@ -23,17 +23,16 @@ module API
         if event.update(event_params)
           render json: event, status: 200
         else
-          render json: event.errors, status: 422
+          render invalid_object_error(event)
         end
       end
 
       def destroy
         event = Reminder.find(params[:id])
-        if event.destroy!
-          render nothing: true, status: 204
-        else
-          render json: "Error: event could not be found", status: 404
-        end
+        event.destroy!
+        render nothing: true, status: 204
+      rescue
+        render object_not_found_error
       end
 
       private
