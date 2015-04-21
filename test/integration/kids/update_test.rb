@@ -1,0 +1,18 @@
+require 'test_helper'
+
+def update_kid(kid)
+  patch "/api/v1/kids/#{kid.id}", kid.attributes, { 'Accept' => Mime::JSON }
+end
+
+class CreatingTest < ActionDispatch::IntegrationTest
+  test 'kids can be updated' do
+    kid = kids(:Jimmy)
+
+    kid.name = "Jenny"
+    update_kid(kid)
+
+    assert_equal 201, response.status
+    json_kid = JSON.parse(response.body, symbolize_names: true)
+    assert_equal json_kid[:name], kid.name
+  end
+end
