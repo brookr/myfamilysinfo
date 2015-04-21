@@ -39,11 +39,5 @@ begin
     relation.save!
   end
 
-  Kid.all.each do |k|
-    rand(4).times do
-      kid = k.reminders.create
-      kid.name = FFaker::Product.product_name
-      kid.save!
-    end
-  end
+  meds = Reminder.create!({ type: 'Medicine', name: 'Advil', amount: '2 pills', kid_id: 1 })
 end
