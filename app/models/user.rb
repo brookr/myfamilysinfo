@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   # validates_presence_of :username
   # validates_uniqueness_of :username
 
-  # has_many :relationships
-  has_many :kids#, through: :relationships
+  has_many :relationships
+  has_many :kids, foreign_key: :parent_id #, through: :relationships
   has_many :reminders, through: :kids
 
   def self.sort_by_role(user)
@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
       user.relationships.select { |r| r.role == role }
     end
   end
-
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
