@@ -23,6 +23,8 @@ class Api::V1::KidsController < Api::V1::BaseController
     @kid = Kid.find(params[:id])
     if @kid.update(kid_params)
       render json: @kid, status: 201
+    else
+      render invalid_object_error(@kid)
     end
   end
 

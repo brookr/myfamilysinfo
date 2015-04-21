@@ -7,6 +7,8 @@ class Api::V1::BaseController < ApplicationController
         new_err[:code] = 'missing_field'
       elsif error.first.match(/taken/)
         new_err[:code] = 'unique_field'
+      elsif error.first.match(/in the future/)
+        new_err[:code] = 'invalid_field'
       end
       error_object[:errors] << new_err
     end
