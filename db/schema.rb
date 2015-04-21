@@ -69,8 +69,10 @@ ActiveRecord::Schema.define(version: 20150421140137) do
     t.string   "provider"
     t.string   "uid"
     t.string   "username"
+    t.string   "authentication_token"
   end
 
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
