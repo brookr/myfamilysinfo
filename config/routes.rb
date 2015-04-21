@@ -18,8 +18,8 @@ Myfamilysinfo::Application.routes.draw do
       resources :kids, except:[:edit, :new] do
         resources :events, except: [:show, :edit, :new]
       end
-      resource :users, only: [:create, :update]
-      resource :sessions, only: [:create]
+      resources :users, only: [:create, :update]
+      resources :sessions, only: [:create]
     end
   end
 end
