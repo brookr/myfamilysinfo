@@ -1,7 +1,7 @@
 require 'test_helper'
 
 def create_kid(kid)
-  post '/api/v1/kids', kid.attributes, { 'Accept' => Mime::JSON }
+  post '/api/v1/kids', kid.attributes, 'Accept' => Mime::JSON
 end
 
 class CreatingTest < ActionDispatch::IntegrationTest
