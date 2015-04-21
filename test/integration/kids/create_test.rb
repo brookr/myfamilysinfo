@@ -12,4 +12,13 @@ class CreatingTest < ActionDispatch::IntegrationTest
     json_kid = JSON.parse(response.body, symbolize_names: true)
     assert_equal json_kid[:name], 'Bobby Joe'
   end
+
+  test 'kids cannot be created without a name' do
+    create_kid(kid: { name: nil })
+
+    assert_equal 422, response.status
+    json_error = JSON.parse(response.body, symbolize_names: true)
+    assert_equal 'Validation failed', json_error[:message]
+    assert_equal 'missing_field', json_error[:errors][0][:code]
+  end
 end
