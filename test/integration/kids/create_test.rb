@@ -6,7 +6,7 @@ end
 
 class CreatingTest < ActionDispatch::IntegrationTest
   test 'kids can be created' do
-    create_kid(name: 'Bobby Joe')
+    create_kid(kid: { name: 'Bobby Joe' })
 
     assert_equal 201, response.status
     json_kid = JSON.parse(response.body, symbolize_names: true)
