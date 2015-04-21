@@ -6,7 +6,7 @@ module API
       def index
         # TODO: scope kids to current user
         @kids = Kid.all
-        render json: @kids, status: 200
+        render json: @kids, each_serializer: API::V1::KidShortSerializer, status: 200
       end
 
       def show
