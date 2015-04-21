@@ -30,7 +30,7 @@ class RemindersController < ApplicationController
 
   private
     def reminder_params
-      params.require(:reminder).permit(:name, :kid_id)
+      params.require(:reminder).permit(:name, :kid_id, :type, :datetime)
     end
 end
 

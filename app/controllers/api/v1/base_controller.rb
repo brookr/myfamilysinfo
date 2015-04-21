@@ -2,7 +2,7 @@ class Api::BaseController < InheritedResources::Base
   before_filter :authenticate_user!
   prepend_before_filter :get_auth_token
 
-  respond_to :xml, :json
+  respond_to :json
 
   private
   def get_auth_token

@@ -17,7 +17,16 @@ By [Liam Buell](https://github.com/Lbuell/),
 
 ## Installation
 
-Fork and clone the repo and push it to heroku or your own server setup:
+Fork and clone the repo and push it to heroku or your own server setup.
+
+To run locally, you must have a `config/application.yml` file, with the following keys:
+
+- `PORT`
+- `RACK_ENV`
+- `TWITTER_CONSUMER_KEY`
+- `TWITTER_CONSUMER_SECRET`
+- `FACEBOOK_APP_ID`
+- `FACEBOOK_SECRET`
 
 ## Information
 
@@ -38,6 +47,9 @@ send us a pull request.
 * Liam Buell (https://github.com/Lbuell/)
 * Miles Starkenburg (https://github.com/gringocl/)
 
+* Tyler Pottle (https://github.com/tybosis)
+* Michael Becco (https://github.com/trendwithin)
+* Tim Heuett (https://github.com/timhugh)
 
 ## Contributing
 
