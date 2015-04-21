@@ -4,4 +4,6 @@ class Kid < ActiveRecord::Base
   belongs_to :parent, class_name: 'User'
   has_many :reminders
   accepts_nested_attributes_for :relationships
+
+  validates :name, presence: true
 end
