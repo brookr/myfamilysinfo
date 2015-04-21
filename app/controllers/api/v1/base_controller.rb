@@ -28,7 +28,7 @@ module API
       end
 
       def object_not_found_error
-        { json: { "message":"Object does not exist" }, status: 404 }
+        { json: { "message": "Object does not exist" }, status: 404 }
       end
 
       def render_422(object)
@@ -38,17 +38,20 @@ module API
       def invalid_object_error(object)
         error_object = { message: "Validation failed", errors: [] }
         object.errors.messages.each do |field, error|
-          new_err = {resource: object.class.to_s, field: field.to_s }
-          if error.first.match(/blank/)
-            new_err[:code] = 'missing_field'
-          elsif error.first.match(/taken/)
-            new_err[:code] = 'unique_field'
-          elsif error.first.match(/in the future/)
-            new_err[:code] = 'invalid_field'
-          end
+          new_err = { resource: object.class.to_s, field: field.to_s, code: invalid_object_error_code(error.first) }
           error_object[:errors] << new_err
         end
         { json: error_object, status: 422 }
+      end
+
+      def invalid_object_error_code(message)
+        if message.match(/blank/)
+          'missing_field'
+        elsif message.match(/taken/)
+          'unique_field'
+        elsif message.match(/in the future/)
+          'invalid_field'
+        end
       end
     end
   end
