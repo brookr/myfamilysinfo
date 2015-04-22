@@ -1,4 +1,4 @@
-class API::V1::UsersController < ApplicationController
+class API::V1::UsersController < API::V1::BaseController
   skip_before_filter :verify_authenticity_token, :authenticate_user_from_token!,
                      :authenticate_user!
 
