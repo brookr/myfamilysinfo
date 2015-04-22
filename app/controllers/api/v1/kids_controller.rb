@@ -38,7 +38,7 @@ module API
       protected
 
       def kid_params
-        params.permit(:name, :dob, :insurance_id, :nurse_phone)
+        params.permit(:name, :dob, :insurance_id, :nurse_phone, :notes)
       end
 
       def allowed_to_edit!
