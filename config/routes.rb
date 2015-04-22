@@ -1,7 +1,8 @@
 Myfamilysinfo::Application.routes.draw do
-  root :to => "home#index"
-  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  get 'angular/index'
 
+  root :to => "home#index"
+  
   devise_scope :user do
     match '/api/v1/sessions', to: 'api/v1/sessions#create', via: :post
   end
