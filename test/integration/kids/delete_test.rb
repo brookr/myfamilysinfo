@@ -10,6 +10,14 @@ class DeletingTest < ActionDispatch::IntegrationTest
     assert_equal 204, response.status
   end
 
+  test 'cannot delete kids belonging to another user' do
+    kid = kids :MilesJr
+    user = users :mother
+
+    delete_kid kid, user.authentication_token
+    assert_equal 404, response.status
+  end
+
   test 'error when trying to delete a non-existant kid' do
     kid = Kid.new(id: "Prince Humperdinck")
 
