@@ -14,7 +14,6 @@ feature "User authentication" do
 
   scenario "User can Sign in" do
     liam_sign_in(:liam)
-    save_and_open_page
     page.must_have_content "Signed in successfully."
     page.wont_have_content "There was a problem with your sign up"
   end
@@ -53,8 +52,6 @@ feature "User authentication" do
         info: { nickname: 'test_twitter_user'},
         })
     click_on "Sign in with Twitter"
-    #binding.pry
-    #save_and_open_page
     page.must_have_content "test_twitter_user, you are signed in!"
   end
 end

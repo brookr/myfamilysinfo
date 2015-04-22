@@ -9,7 +9,6 @@ class CreateSessionsTest < ActionDispatch::IntegrationTest
       password: 'password'
     }.to_json,
     'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s
-    puts json(response.body)
     assert_equal 201, response.status
   end
 
@@ -19,7 +18,6 @@ class CreateSessionsTest < ActionDispatch::IntegrationTest
       password: 'pass'
     }.to_json,
     'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s
-    puts json(response.body)
     assert_equal 401, response.status
   end
 end
