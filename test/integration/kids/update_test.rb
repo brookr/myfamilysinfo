@@ -13,6 +13,14 @@ class UpdatingTest < ActionDispatch::IntegrationTest
     assert_equal json_kid[:name], kid.name
   end
 
+  test 'cannot update kids belonging to another user' do
+    kid = kids :MilesJr
+    user = users :mother
+
+    update_kid kid, user.authentication_token
+    assert_equal 404, response.status
+  end
+
   test 'update cannot be accessed without token' do
     kid = kids(:Jimmy)
 
