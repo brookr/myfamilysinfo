@@ -1,13 +1,17 @@
-app.controller('KidListController', [ '$http', '$scope', function($http){
-  kidlist = this;
-  kidlist.kids = [];
+(function(){
+  var app = angular.module('kid-list', []);
 
-  kidlist.current_kid = null;
+  app.controller('KidListController', [ '$http', '$scope', function($http){
+    kidlist = this;
+    kidlist.kids = [];
 
-  kidlist.index = function(){
-    $http.get('api/v1/kids?auth_token=' + $scope.auth_token)
-      .success(function(data){
-        kidlist.kids = data;
-      });
-  };
-}]);
+    kidlist.current_kid = null;
+
+    kidlist.index = function(){
+      $http.get('api/v1/kids?auth_token=' + $scope.auth_token)
+        .success(function(data){
+          kidlist.kids = data;
+        });
+    };
+  }]);
+})();
