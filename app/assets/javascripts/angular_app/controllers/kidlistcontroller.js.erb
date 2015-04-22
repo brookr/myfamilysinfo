@@ -1,3 +1,13 @@
-app.controller('KidListController', [ '$scope', function($scope){
+app.controller('KidListController', [ '$http', '$scope', function($http){
+  kidlist = this;
+  kidlist.kids = [];
 
+  kidlist.current_kid = null;
+
+  kidlist.index = function(){
+    $http.get('api/v1/kids?auth_token=' + $scope.auth_token)
+      .success(function(data){
+        kidlist.kids = data;
+      });
+  };
 }]);
