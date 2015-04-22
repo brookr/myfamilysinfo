@@ -29,5 +29,10 @@
           kidlist.show_form = false;
         });
     };
+
+    kidlist.setKid = function(kid){
+      kidlist.current_kid = kid;
+      $scope.getevents();
+    };
   }]);
 })();
