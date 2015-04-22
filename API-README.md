@@ -88,8 +88,7 @@ Success response:
 
   `Status: 200
   Body:
-  {"user":
-  {"id":#,"email":"user_email","authentication_token":"token_value"}}`
+  {"id":#,"email":"user_email","authentication_token":"token_value"}`
 
 Failure response:
   `Status: 422`
