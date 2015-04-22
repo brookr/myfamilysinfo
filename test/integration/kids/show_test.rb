@@ -3,7 +3,7 @@ require 'api_helper'
 
 class ShowTest < ActionDispatch::IntegrationTest
   test 'the show endpoint returns a single kid' do
-    kid = kids(:Jimmy)
+    kid = kids :Jimmy
 
     get_kid kid, users(:mother).authentication_token
     assert_equal 200, response.status
@@ -11,6 +11,14 @@ class ShowTest < ActionDispatch::IntegrationTest
     json_kid = JSON.parse(response.body, symbolize_names: true)
     assert_equal json_kid[:name], kid.name
     assert_equal json_kid[:dob], kid.dob.strftime("%d-%m-%Y")
+  end
+
+  test 'show endpoint will not show kids from other users' do
+    kid = kids :MilesJr
+    user = users :mother
+
+    get_kid kid, user.authentication_token
+    assert_equal 404, response.status
   end
 
   test 'show cannot be accessed without token' do
