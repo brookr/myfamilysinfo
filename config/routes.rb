@@ -1,13 +1,12 @@
 Myfamilysinfo::Application.routes.draw do
   get 'angular/index'
 
-  root :to => "angular#index"
+  root :to => 'angular#index'
+  get 'app', to: 'angular#app'
 
   devise_scope :user do
     match '/api/v1/sessions', to: 'api/v1/sessions#create', via: :post
   end
-
-  get ':users/:id/', :to => "user#show"
 
   resource :user, { controller: :users, only: :show } do
     resources :kids, only: [:new, :create] do
