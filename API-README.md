@@ -68,7 +68,7 @@ POST: `/api/v1/users`
 
 Required fields:
 
-- `username - must be unique`
+- `email - must be unique`
 - `password - must be 8 characters minimum`
 
 Success response:
@@ -81,7 +81,7 @@ PATCH: `/api/v1/users/:id`
 
 Allowed fields:
 
-- `username - must be unique`
+- `email - must be unique`
 - `password - password must be 8 characters minimum`
 
 Success response:
@@ -103,7 +103,7 @@ POST: `/api/v1/sessions`
 
 Required fields:
 
-- `username`
+- `email`
 - `password`
 
 Success response:
