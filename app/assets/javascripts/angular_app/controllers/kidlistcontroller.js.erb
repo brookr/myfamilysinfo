@@ -1,3 +1,33 @@
-app.controller('KidListController', [ '$scope', function($scope){
+(function(){
+  var app = angular.module('kid-list', []);
 
-}]);
+  app.controller('KidListController', [ '$http', '$scope', function($http, $scope){
+    kidlist = this;
+    kidlist.kids = [];
+
+    kidlist.current_kid = null;
+    kidlist.new_kid = {};
+
+    kidlist.show_form = false;
+
+    // TODO: remove this, just for testing
+    $scope.auth_token = '79vjpgBXz3S2AZHoN141';
+
+    kidlist.index = function(){
+      $http.get('/api/v1/kids?auth_token=' + $scope.auth_token)
+        .success(function(data){
+          kidlist.kids = data.reverse();
+        });
+    };
+    // put kidlist index function into the global scope so it can be called after a session is created
+    $scope.getKidList = kidlist.index;
+
+    kidlist.create = function(){
+      $http.post('/api/v1/kids?auth_token=' + $scope.auth_token, kidlist.new_kid)
+        .success(function(data){
+          kidlist.kids.push(data);
+          kidlist.show_form = false;
+        });
+    };
+  }]);
+})();
