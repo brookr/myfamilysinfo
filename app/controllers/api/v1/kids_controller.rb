@@ -14,13 +14,13 @@ module API
       end
 
       def create
-        @kid = Kid.new(kid_params)
+        @kid = current_user.kids.build(kid_params)
         @kid.save!
         render json: @kid, status: 201
       end
 
       def update
-        @kid = Kid.find(params[:id])
+        @kid = current_user.kids.find(params[:id])
         if allowed_to_edit!
           @kid.update!(kid_params)
           render json: @kid, status: 201
@@ -28,7 +28,7 @@ module API
       end
 
       def destroy
-        @kid = Kid.find(params[:id])
+        @kid = current_user.kids.find(params[:id])
         if allowed_to_edit!
           @kid.delete
           head 204
