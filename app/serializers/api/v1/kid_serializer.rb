@@ -1,7 +1,7 @@
 module API
   module V1
     class KidSerializer < ActiveModel::Serializer
-      attributes :id, :name, :dob, :nurse_phone
+      attributes :id, :name, :dob, :nurse_phone, :notes
 
       def attributes
         data = super
