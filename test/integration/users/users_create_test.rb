@@ -12,9 +12,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 
     assert_equal 201, response.status
     assert_equal Mime::JSON, response.content_type
-
     user = json(response.body)
-    assert_equal user_url(user[:id]), response.location
   end
 
   test 'user creation with blank email' do
