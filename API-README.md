@@ -68,8 +68,8 @@ POST: `/api/v1/users`
 
 Required fields:
 
-- `username` - must be unique
-- `password` - must be 8 characters minimum
+- `username - must be unique`
+- `password - must be 8 characters minimum`
 
 Success response:
 
@@ -81,18 +81,18 @@ PATCH: `/api/v1/users/:id`
 
 Allowed fields:
 
-- `username` - must be unique
-- `password` - password must be 8 characters minimum
+- `username - must be unique`
+- `password - password must be 8 characters minimum`
 
 Success response:
 
-  Status: 200
+  `Status: 200
   Body:
   {"user":
-  {"id":#,"email":"user_email","authentication_token":"token_value"}}
+  {"id":#,"email":"user_email","authentication_token":"token_value"}}`
 
 Failure response:
-  Status: 422
+  `Status: 422`
 ---
 
 #Sessions
@@ -108,15 +108,15 @@ Required fields:
 
 Success response:
 
-	Status: 201
+	`Status: 201
 	Body:
-	{ "auth_token":" 'token_string' " }
+	{ "auth_token":" 'token_string' " }`
 
 Failure response:
 
-	Status: 401
+	`Status: 401
 	Body:
-	{ "message":"Incorrect username or password" }
+	{ "message":"Incorrect username or password" }`
 
 ---
 
