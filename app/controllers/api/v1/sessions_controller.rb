@@ -16,7 +16,7 @@ class API::V1::SessionsController < Devise::SessionsController
   end
 
   def invalid_login_attempt
-    render json: { "message":"Incorrect username or password" }, status: 401
+    render json: { "message":"Incorrect email or password" }, status: 401
   end
 
   def user_from_credentials
