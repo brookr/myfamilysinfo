@@ -10,6 +10,5 @@
  *
  *= require_self
  *= require_tree .
- *= require foundation-icons
  */
- @import "foundation_and_overrides";
+
