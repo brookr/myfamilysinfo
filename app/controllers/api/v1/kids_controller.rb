@@ -9,7 +9,7 @@ module API
       end
 
       def show
-        @kid = Kid.find(params[:id])
+        @kid = current_user.kids.find(params[:id])
         render json: @kid, status: 200
       end
 
