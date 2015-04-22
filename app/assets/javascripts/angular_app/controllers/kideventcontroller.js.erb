@@ -1,55 +1,45 @@
 (function() {
   var app = angular.module('kid-events', []);
 
-  app.controller('KidEventController', [ '$scope', function($scope){
+  app.controller('KidEventController', [ '$http', '$scope', function($http, $scope){
     $scope.events = [];
     $scope.event  = {};
 
+    // TODO: for testing purposes only
+    $scope.auth_token = 'R_x23UQx-tW2BtCNwcxm';
+
     $scope.index = function() {
-      $http.get('/api/kids/' + $scope.kidlist.current_kid.id + '/events')
+      console.log($scope.kidlist)
+      $http.get('/api/v1/kids/' + $scope.kidlist.current_kid.id + '/events?auth_token=' + $scope.auth_token)
         .success(function(data) {
           $scope.events = data;
-        })
-        .error(function(data, status) {
-          console.log(status);
-          $scope.errors.push(status);
         });
     };
 
+    $scope.getevents = this.index;
+
     $scope.create = function() {
-      $http.post('/api/kids/' + $scope.kidlist.current_kid.id + '/events', $scope.event)
+      $http.post('/api/v1/kids/' + $scope.kidlist.current_kid.id + '/events?auth_token=' + $scope.auth_token, $scope.event)
         .success(function(data) {
           $scope.events.push(data);
           $scope.event = {};
-        })
-        .error(functuon(data, status) {
-          console.log(status);
-          $scope.errors.push(status)
-        })
+        });
     };
 
     $scope.edit = function(event) {
-      $http.patch('/api/kids/' + $scope.kidlist.current_kid.id + '/events/' + event.id, event)
+      $http.patch('/api/v1/kids/' + $scope.kidlist.current_kid.id + '/events/' + event.id + '?auth_token=' + $scope.auth_token, event)
         .success(function(data) {
-        })
-        .error(function(data) {
-          console.log(error);
-          $scope.errors.push(status);
         });
     };
 
     $scope.delete = function(product) {
-      $http.delete('/api/kids' + $scope.kidlist.current_kid.id + '/events/' + event.id)
+      $http.delete('/api/v1/kids' + $scope.kidlist.current_kid.id + '/events/' + event.id + '?auth_token=' + $scope.auth_token)
         .success(function(data) {
           if(confirm('Are you sure you want to delete this event?')) {
             var index = $scope.events.map(function(e) { return e.id; }).indexOf(event.id);
             $scope.events.splice(index, 1);
           };
-        })
-        .error(function(data, status) {
-          console.log(status);
-          $scope.errors.push(status);
-        })
+        });
     }
 
   }]);

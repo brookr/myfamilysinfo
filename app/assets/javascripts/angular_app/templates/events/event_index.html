@@ -1,7 +1,7 @@
-<div class="container" ng-app="kid-events" ng-controller="KidEventController">
+<div class="container" ng-app="kid-events" ng-controller="KidEventController" ng-init="index()">
   <h1 class="text-center">Events</h1>
 
-  <div class="btn-group" dropdown is-open="status.isopen" ng-controller="DropdownCtrl">
+  <div class="btn-group" dropdown is-open="status.isopen">
     <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
       Create a new Event <span class="caret"></span>
     </button>
