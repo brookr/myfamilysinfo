@@ -10,6 +10,7 @@ SimpleCov.start
 class ActionDispatch::IntegrationTest
   include Rails.application.routes.url_helpers
   include Capybara::DSL
+  include Capybara::Assertions
 end
 
 class ActiveSupport::TestCase
@@ -21,7 +22,12 @@ class ActiveSupport::TestCase
     JSON.parse(body, symbolize_names: true)
   end
 end
-
+def liam_sign_in(role = :editor)
+  visit new_user_session_path
+  fill_in "Email", with: users(:liam).email
+  fill_in "Password",  with: "password"
+  page.find("[type='submit']").click
+end
 def sign_in(role = :editor)
   visit new_user_session_path
   fill_in "Email", with: users(:mother).email
