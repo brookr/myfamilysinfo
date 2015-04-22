@@ -1,7 +1,15 @@
 (function(){
   var app = angular.module('kid-details', []);
 
-  app.controller('KidDetailController', [ '$http', '$scope', function($http, $scope){
+  app.controller('KidDetailController', [ '$http', function($http){
+    kiddetails = this;
+    kiddetails.kid = {};
 
+    kiddetails.show = function(){
+      $http.get('/api/v1/kids/' + kidlist.current_kid.id)
+        .success(function(data){
+          kiddetails.kid = data;
+        });
+    };
   }]);
 })();

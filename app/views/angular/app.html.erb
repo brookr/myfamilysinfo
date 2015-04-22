@@ -2,18 +2,22 @@
   <div ng-hide='current_user'>
     <!-- Login/signup form will go here -->
   </div>
-  <div ng-show='current_user'>
+  <div ng-controller='KidListController as kidlist' ng-init='getKidList()'>
     <div class='container'>
-      <div class="row">
-        <div id='kidlist' class='col-sm-4' ng-app='KidList'>
-
+      <div class='row'>
+        <div class='col-sm-4'>
+          <ul id='kidlist' class='list-group'>
+            <li ng-repeat='kid in kidlist.kids' class='list-group-item' id='kidlist-kid-{{kid.id}}'>
+              {{kid.name}}
+            </li>
+          </ul>
         </div>
         <div class='col-sm-8'>
           <div class='container'>
-            <div class='row'><div class='col-xs-12' ng-app='KidDetails'>
+            <div class='row'><div class='col-xs-12'>
               <!-- kid details here -->
             </div></div>
-            <div class='row'><div class='col-xs-12' ng-app='KidEvents'>
+            <div class='row'><div class='col-xs-12'>
               <!-- events here -->
             </div></div>
           </div>

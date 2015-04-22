@@ -1,11 +1,14 @@
 (function(){
   var app = angular.module('kid-list', []);
 
-  app.controller('KidListController', [ '$http', '$scope', function($http){
+  app.controller('KidListController', [ '$http', '$scope', function($http, $scope){
     kidlist = this;
     kidlist.kids = [];
 
     kidlist.current_kid = null;
+
+    // TODO: remove this, just for testing
+    $scope.auth_token = '79vjpgBXz3S2AZHoN141';
 
     kidlist.index = function(){
       $http.get('api/v1/kids?auth_token=' + $scope.auth_token)
@@ -13,5 +16,7 @@
           kidlist.kids = data;
         });
     };
+    // put kidlist index function into the global scope so it can be called after a session is created
+    $scope.getKidList = kidlist.index;
   }]);
 })();
