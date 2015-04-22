@@ -149,11 +149,12 @@ Success response:
 	Status: 200
 	Body:
 	{
-		id: 1,
-		name: 'Bobby',
-		dob: '14-05-2005',
-		insurance_id: '123456',
-		nurse_phone: '555-867-5309'
+		"id": "1",
+		"name": "Bobby",
+		"dob": "14-05-2005",
+		"insurance_id": "123456",
+		"nurse_phone": "555-867-5309",
+		"notes": "Allergic to peanuts"
 	}
 
 ###Creating a kid
@@ -170,17 +171,19 @@ Allowed fields:
 - `dob` - Date of birth, formatted `dd-mm-yyyy`
 - `insurance_id`
 - `nurse_phone`
+- 'notes'
 
 Success response:
 
 	Status: 201
 	Body:
 	{
-		id: 1,
-		name: 'Bobby',
-		dob: '14-05-2005',
-		insurance_id: '123456',
-		nurse_phone: '555-867-5309'
+		"id": "1",
+		"name": "Bobby",
+		"dob": "14-05-2005",
+		"insurance_id": "123456",
+		"nurse_phone": "555-867-5309",
+		"notes": "Allergic to peanuts"
 	}
 
 ###Editing a kid
@@ -193,17 +196,19 @@ Allowed fields:
 - `dob`
 - `insurance_id`
 - `nurse_phone`
+- 'notes'
 
 Success response:
 
 	Status: 201
 	Body:
 	{
-		id: 1,
-		name: 'Bobby',
-		dob: '14-05-2005',
-		insurance_id: '123456',
-		nurse_phone: '555-867-5309'
+		"id": "1",
+		"name": "Bobby",
+		"dob": "14-05-2005",
+		"insurance_id": "123456",
+		"nurse_phone": "555-867-5309",
+		"notes": "Allergic to peanuts"
 	}
 
 ###Deleting a kid
@@ -212,7 +217,7 @@ DELETE: `/api/v1/kids/:id`
 
 Success response:
 
-	Status: 204
+		Status: 204
 
 ---
 
