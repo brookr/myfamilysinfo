@@ -8,7 +8,7 @@
         <div class='col-sm-4'>
           <div id='kidlist' class='list-group'>
             <div class='list-group-item'><h4>Kids</h4></div>
-            <a ng-repeat='kid in kidlist.kids' class='list-group-item' ng-class='{ active: kidlist.current_kid == kid }' ng-click='kidlist.current_kid = kid'>
+            <a ng-repeat='kid in kidlist.kids' class='list-group-item' ng-class='{ active: kidlist.current_kid == kid }' ng-click='kidlist.setKid(kid)'>
               {{kid.name}}
             </a>
             <div class='list-group-item' ng-hide='kidlist.show_form'>
