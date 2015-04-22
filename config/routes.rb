@@ -4,6 +4,8 @@ Myfamilysinfo::Application.routes.draw do
   root :to => 'angular#index'
   get 'app', to: 'angular#app'
 
+  devise_for :user
+
   devise_scope :user do
     match '/api/v1/sessions', to: 'api/v1/sessions#create', via: :post
   end
