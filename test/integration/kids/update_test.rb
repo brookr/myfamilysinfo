@@ -1,30 +1,25 @@
 require 'test_helper'
-
-def update_kid(kid)
-  patch "/api/v1/kids/#{kid.id}", kid.attributes, 'Accept' => Mime::JSON
-end
+require 'api_helper'
 
 class UpdatingTest < ActionDispatch::IntegrationTest
   test 'kids can be updated' do
     kid = kids(:Jimmy)
 
     kid.name = "Jenny"
-    update_kid(kid)
+    update_kid kid, users(:mother).authentication_token
 
     assert_equal 201, response.status
     json_kid = JSON.parse(response.body, symbolize_names: true)
     assert_equal json_kid[:name], kid.name
   end
 
-  test 'kids cannot be updated with invalid data' do
+  test 'update cannot be accessed without token' do
     kid = kids(:Jimmy)
 
-    kid.dob = Date.today + 10
-    update_kid(kid)
+    update_kid kid
+    assert_equal 401, response.status
 
-    assert_equal 422, response.status
     json_error = JSON.parse(response.body, symbolize_names: true)
-    assert_equal 'Validation failed', json_error[:message]
-    assert_equal 'invalid_field', json_error[:errors][0][:code]
+    assert_equal "Authentication token missing or invalid", json_error[:message]
   end
 end
