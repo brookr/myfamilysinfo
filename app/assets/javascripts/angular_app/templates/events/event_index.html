@@ -1,0 +1,28 @@
+<div class="container" ng-app="kid-events" ng-controller="KidEventController">
+  <h1 class="text-center">Events</h1>
+
+  <div class="btn-group" dropdown is-open="status.isopen" ng-controller="DropdownCtrl">
+    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+      Create a new Event <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="#">Medicine</a></li>
+      <li><a href="#">Height/Weight</a></li>
+      <li><a href="#">Temperature</a></li>
+      <li><a href="#">Symptom</a></li>
+    </ul>
+  </div>
+
+  <div class="list-group-item" ng-repeat="event in events">
+    <h3 class="text-center">Date: {{event.datetime}}</h3>
+    <h3 class="text-center">Type: {{event.type}}</h3>
+    <h3>{{event.name}}</h3>
+    <h3>{{event.amount}}</h3>
+    <h3>{{event.description}}</h3>
+    <h3>{{event.temperature}}</h3>
+    <h3>{{event.height}}</h3>
+    <h3>{{event.weight}}</h3>
+    <a class="btn btn-primary btn-lg" href="#">Duplicate</a>
+  </div>
+
+</div>
