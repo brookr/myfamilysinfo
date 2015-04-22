@@ -28,3 +28,10 @@ Billy:
   insurance_id: UWD-012345678-06
   nurse_phone: 555-555-5555
   parent: mother
+
+MilesJr:
+  name: Miles Jr
+  dob: <%= DateTime.new(2004, 10, 6) %>
+  insurance_id: BRC-012345678
+  nurse_phone: 555-555-5555
+  parent: miles
