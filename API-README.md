@@ -86,12 +86,12 @@ Allowed fields:
 
 Success response:
 
-  `Status: 200
-  Body:
-  {"id":#,"email":"user_email","authentication_token":"token_value"}`
+    Status: 200
+    Body:
+    {"id":#,"email":"user_email","authentication_token":"token_value"}
 
 Failure response:
-  `Status: 422`
+    Status: 422
 ---
 
 #Sessions
@@ -107,15 +107,15 @@ Required fields:
 
 Success response:
 
-	`Status: 201
-	Body:
-	{ "auth_token":" 'token_string' " }`
+    Status: 201
+    Body:
+    { "auth_token":" 'token_string' " }
 
 Failure response:
 
-	`Status: 401
-	Body:
-	{ "message":"Incorrect username or password" }`
+    Status: 401
+    Body:
+    { "message":"Incorrect email or password" }
 
 ---
 
