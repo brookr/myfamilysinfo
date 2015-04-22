@@ -115,7 +115,7 @@ Failure response:
 
 	`Status: 401
 	Body:
-	{ "message":"Incorrect username or password" }`
+	{ "message":"Incorrect email or password" }`
 
 ---
 
