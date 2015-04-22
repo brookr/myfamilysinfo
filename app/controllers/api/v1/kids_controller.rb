@@ -21,20 +21,29 @@ module API
 
       def update
         @kid = Kid.find(params[:id])
-        @kid.update!(kid_params)
-        render json: @kid, status: 201
+        if allowed_to_edit!
+          @kid.update!(kid_params)
+          render json: @kid, status: 201
+        end
       end
 
       def destroy
         @kid = Kid.find(params[:id])
-        @kid.delete
-        head 204
+        if allowed_to_edit!
+          @kid.delete
+          head 204
+        end
       end
 
       protected
 
       def kid_params
         params.permit(:name, :dob, :insurance_id, :nurse_phone)
+      end
+
+      def allowed_to_edit!
+        return true if @kid.parent_id == current_user.id
+        render_404 && false
       end
     end
   end
