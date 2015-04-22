@@ -8,13 +8,17 @@ env:
     - CI_REPORTS=shippable/testresults COVERAGE_REPORTS=shippable/codecoverage
     - secure: PRoKnvyDaYxI9zcOl9p7QKG627MiDj9ieopN3XiErRc+EEsevDyjBBRkgy1r7XbJ8mYyHn3XB87t2GAhw2SBpMALgxcNlTGhZ4WVlKwLuEnAV3pCTwnMPWRwBzg5jUYQN6TPi637sazsQ1rss2j57FPGDc/zpnpN4xMdb9quMnDpH+09muPR9XBMOcaSaIWvhHaLPCiH2wua2d5A6KTP1DD391dvZTdhc9lyYrx/X7UGq9mmOnv6RfZQoMkOwR0FD43UQ8vZFspmfaO5TcaoAs/AWEgBiFkl8xVq+oZlG9r196TjBUlhs+dNk+i9lcxvWEbZoClHBj7P2Xz6D+9Dig==
 
+branches:
+  only:
+    - master
+
 before_install:
   - which heroku || wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
 before_script:
   - mkdir -p shippable/testresults
   - mkdir -p shippable/codecoverage
-  - psql -c 'create database "sample-rubyonrails-postgres-heroku_test";' -U postgres
+  - psql -c 'create database "myfamilysinfo_test";' -U postgres
 
 after_success:
   - test -f ~/.ssh/id_rsa.heroku || ssh-keygen -y -f ~/.ssh/id_rsa > ~/.ssh/id_rsa.heroku && heroku keys:add ~/.ssh/id_rsa.heroku
