@@ -2,7 +2,23 @@
   <div ng-controller='SessionsController as session' ng-hide='current_user'>
     <!-- Login/signup form will go here -->
   </div>
-  <div ng-controller='KidListController as kids' ng-show='current_user'>
-    <!-- actual app goes here -->
+  <div ng-show='current_user'>
+    <div class='container'>
+      <div class="row">
+        <div id='kidlist' class='col-sm-4' ng-app='KidList'>
+
+        </div>
+        <div class='col-sm-8'>
+          <div class='container'>
+            <div class='row'><div class='col-xs-12' ng-app='KidDetails'>
+              <!-- kid details here -->
+            </div></div>
+            <div class='row'><div class='col-xs-12' ng-app='KidEvents'>
+              <!-- events here -->
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
