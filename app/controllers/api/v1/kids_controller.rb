@@ -4,8 +4,7 @@ module API
       skip_before_action :authenticate_user!
 
       def index
-        # TODO: scope kids to current user
-        @kids = Kid.all
+        @kids = current_user.kids
         render json: @kids, each_serializer: API::V1::KidShortSerializer, status: 200
       end
 
