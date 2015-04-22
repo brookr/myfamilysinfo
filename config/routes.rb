@@ -1,8 +1,8 @@
 Myfamilysinfo::Application.routes.draw do
   get 'angular/index'
 
-  root :to => "home#index"
-  
+  root :to => "angular#index"
+
   devise_scope :user do
     match '/api/v1/sessions', to: 'api/v1/sessions#create', via: :post
   end
