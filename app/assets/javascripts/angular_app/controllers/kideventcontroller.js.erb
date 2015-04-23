@@ -1,7 +1,7 @@
 (function() {
   var app = angular.module('kid-events', []);
 
-  app.controller('KidEventController', [ '$http', '$scope', function($http, $scope){
+  app.controller('KidEventController', [ '$http', '$scope', '$rootScope', function($http, $scope, $rootScope){
     $scope.events = [];
     $scope.event  = {};
 
@@ -9,16 +9,16 @@
     $scope.auth_token = 'R_x23UQx-tW2BtCNwcxm';
 
     $scope.index = function() {
-      console.log($scope.kidlist)
       $http.get('/api/v1/kids/' + $scope.kidlist.current_kid.id + '/events?auth_token=' + $scope.auth_token)
         .success(function(data) {
           $scope.events = data;
         });
     };
 
-    $scope.getevents = this.index;
+    $rootScope.getevents = $scope.index;
 
     $scope.create = function() {
+      console.log($scope.event);
       $http.post('/api/v1/kids/' + $scope.kidlist.current_kid.id + '/events?auth_token=' + $scope.auth_token, $scope.event)
         .success(function(data) {
           $scope.events.push(data);
@@ -26,25 +26,37 @@
         });
     };
 
+    $scope.duplicate = function(event) {
+      $http.post('/api/v1/kids/' + $scope.kidlist.current_kid.id + '/events?auth_token=' + $scope.auth_token, event)
+        .success(function(data) {
+          $scope.events.push(data);
+          data.datetime = new Date();
+        });
+    }
+
     $scope.edit = function(event) {
       $http.patch('/api/v1/kids/' + $scope.kidlist.current_kid.id + '/events/' + event.id + '?auth_token=' + $scope.auth_token, event)
         .success(function(data) {
         });
     };
 
-    $scope.delete = function(product) {
-      $http.delete('/api/v1/kids' + $scope.kidlist.current_kid.id + '/events/' + event.id + '?auth_token=' + $scope.auth_token)
+    $scope.delete = function(event) {
+      console.log(event);
+      $http.delete('/api/v1/kids/' + $scope.kidlist.current_kid.id + '/events/' + event.id + '?auth_token=' + $scope.auth_token)
         .success(function(data) {
           if(confirm('Are you sure you want to delete this event?')) {
             var index = $scope.events.map(function(e) { return e.id; }).indexOf(event.id);
             $scope.events.splice(index, 1);
           };
         });
-    }
+    };
 
   }]);
 
   app.controller('DropdownCtrl', function ($scope) {
+    $scope.status = {
+      isopen: false
+    };
 
     $scope.toggleDropdown = function($event) {
       $event.preventDefault();
@@ -54,8 +66,7 @@
 
   });
 
-  app.controller('DatepickerDemoCtrl', function ($scope) {
-
+  app.controller('DatepickerCtrl', function ($scope) {
     $scope.open = function($event) {
       $event.preventDefault();
       $event.stopPropagation();
@@ -64,4 +75,9 @@
     };
 
   });
+
+  app.controller('TimepickerCtrl', function ($scope, $log) {
+    $scope.mytime = new Date();
+  });
+
 })();
