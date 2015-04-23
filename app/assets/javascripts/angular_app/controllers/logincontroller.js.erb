@@ -1,20 +1,16 @@
 (function() {
   var app = angular.module('login-user', []);
-  app.controller('LoginController', ['$http', '$scope', function ($http, $scope, $rootScope) {
-    $scope.credentials = {
-      email: '',
-      password: ''
-    };
+  app.controller('LoginController', ['$http', '$scope', '$rootScope', function ($http, $scope, $rootScope) {
+    this.credentials = {};
 
-    this.login = function (credentials) {
-      $http.post('/api/v1/sessions', credentials)
+    this.login = function(){
+      $http.post('/api/v1/sessions', this.credentials)
       .success(function(data){
         $rootScope.current_user = data;
-        console.log($rootScope.current_user);
+        console.log(data);
+        $rootScope.getKidList();
       })
       .error(function(data, status){
-        console.log(status);
-        $scope.errors.push(status);
       });
     };
   }]);
