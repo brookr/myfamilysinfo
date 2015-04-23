@@ -1,22 +1,24 @@
 module API
   module V1
     class BaseController < ApplicationController
+      class UnauthorizedError < RuntimeError
+      end
+
       include ActionController::HttpAuthentication::Token
 
       skip_before_action :verify_authenticity_token
-      before_action :authenticate_user_from_token!
-
-      prepend_before_filter :get_auth_token
+      before_action :authenticate_user_from_token
 
       private
 
-      def authenticate_user_from_token!
+      def authenticate_user_from_token
         @current_user = User.find_by(authentication_token: get_auth_token)
-        @current_user || render_401
+        raise UnauthorizedError unless @current_user
+        @current_user
       end
 
       def current_user
-        @current_user ||= authenticate_user_from_token!
+        @current_user ||= authenticate_user_from_token
       end
 
       def default_serializer_options
@@ -29,9 +31,10 @@ module API
         token || params[:auth_token]
       end
 
+      rescue_from UnauthorizedError, with: :render_401
+
       rescue_from ActionController::RoutingError, with: :render_404
       rescue_from ActiveRecord::RecordNotFound, with: :render_404
-      rescue_from Pundit::NotAuthorizedError, with: :render_404
 
       rescue_from ActiveRecord::RecordInvalid do |exception|
         render_422(exception.record)
@@ -46,11 +49,7 @@ module API
       end
 
       def render_401
-        render unauthorized_error
-      end
-
-      def unauthorized_error
-        { json: { "message": "Authentication token missing or invalid"}, status: 401 }
+        render json: { "message": "Authentication token missing or invalid"}, status: 401
       end
 
       def render_404

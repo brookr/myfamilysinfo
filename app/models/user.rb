@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   has_many :reminders, through: :kids
   before_save :ensure_authentication_token
 
+  validates :password, presence: true
+  validates :email, presence: true
+
   def ensure_authentication_token
     if authentication_token.blank?
       self.authentication_token = generate_authentication_token

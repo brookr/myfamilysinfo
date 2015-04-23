@@ -1,14 +1,14 @@
 liam:
   email: user@example.com
-  password_digest: <%= User.new.password = 'password' %>
+  password_digest: <%= User.new(password: 'password').password_digest %>
   authentication_token: token
 
 mother:
   email: mother@example.com
-  password_digest: <%= User.new.password = 'password' %>
+  password_digest: <%= User.new(password: 'password').password_digest %>
   authentication_token: mother_token
 
 miles:
   email: miles@example.com
-  password_digest: <%= User.new.password = 'password' %>
+  password_digest: <%= User.new(password: 'password').password_digest %>
   authentication_token: some_other_token

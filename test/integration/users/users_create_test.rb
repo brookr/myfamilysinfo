@@ -1,47 +1,31 @@
-require "test_helper"
+require 'test_helper'
+require 'api_helper'
 
 class UsersTest < ActionDispatch::IntegrationTest
   setup { host! 'api.example.com' }
 
   def test_user_creation_with_valid_data
-    post '/api/v1/users', {
-      email: 'test123@example.com',
-      password: 'password'
-    }.to_json,
-    'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s
-
+    user_data = { email: 'test@example.com', password: 'password' }
+    create_user user_data
     assert_equal 201, response.status
     assert_equal Mime::JSON, response.content_type
-    user = json(response.body)
   end
 
   test 'user creation with blank email' do
-    post '/api/v1/users', {
-      email: '',
-      password: 'password'
-    }.to_json,
-    'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s
-
+    user_data = { email: nil, password: 'password' }
+    create_user user_data
     assert_equal 422, response.status
   end
 
   test 'user creation with invalid email' do
-    post '/api/v1/users', {
-      email: 'me.com',
-      password: 'password'
-    }.to_json,
-    'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s
-
+    user_data = { email: 'me.com', password: 'password' }
+    create_user user_data
     assert_equal 422, response.status
   end
 
   test 'user creation with invalid password' do
-    post '/api/v1/users', {
-      email: 'me@you.com',
-      password: ''
-    }.to_json,
-    'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s
-
+    user_data = { email: 'me@you.com', password: nil }
+    create_user user_data
     assert_equal 422, response.status
   end
 end
