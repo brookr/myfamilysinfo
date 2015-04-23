@@ -1,6 +1,8 @@
 module API
   module V1
     class BaseController < ApplicationController
+      include ActionController::HttpAuthentication::Token
+
       skip_before_action :verify_authenticity_token
       before_action :authenticate_user_from_token!
 
@@ -9,15 +11,12 @@ module API
       private
 
       def authenticate_user_from_token!
-        authenticate_with_http_token do |token, options|
-          @token = token
-        end
-        @token ||= params[:auth_token]
-        if user = User.find_by(authentication_token: @token)
-          sign_in user, store: false
-        else
-          render_401
-        end
+        @current_user = User.find_by(authentication_token: get_auth_token)
+        @current_user || render_401
+      end
+
+      def current_user
+        @current_user ||= authenticate_user_from_token!
       end
 
       def default_serializer_options
@@ -25,9 +24,9 @@ module API
       end
 
       def get_auth_token
-        if auth_token = params[:auth_token].blank? && request.headers["X-AUTH-TOKEN"]
-          params[:auth_token] = auth_token
-        end
+        auth_header = request.env['HTTP_AUTHORIZATION']
+        token = auth_header && auth_header.split('=').last
+        token || params[:auth_token]
       end
 
       rescue_from ActionController::RoutingError, with: :render_404

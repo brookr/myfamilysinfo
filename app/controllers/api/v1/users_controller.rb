@@ -1,27 +1,24 @@
-class API::V1::UsersController < API::V1::BaseController
-  skip_before_filter :verify_authenticity_token, :authenticate_user_from_token!,
-                     :authenticate_user!
+module API
+  module V1
+    class UsersController < API::V1::BaseController
+      skip_before_filter :verify_authenticity_token, :authenticate_user_from_token!, :authenticate_user!
 
-  def create
-    user = User.new(user_params)
-    if user.save
-      render json: user, each_serializer: API::V1::UserSerializer, status: 201, location: user
-    else
-      render json: user.errors, status: 422
+      def create
+        user = User.new(user_params)
+        user.save!
+        render json: user, status: 201
+      end
+
+      def update
+        user = User.find(params[:id])
+        user.update!(user_params)
+        render json: user, status: 200
+      end
+
+      private
+      def user_params
+        params.permit(:email, :password)
+      end
     end
-  end
-
-  def update
-    user = User.find(params[:id])
-    if user.update(user_params)
-      render json: user, status: 200
-    else
-      render json: user.errors, status: 422
-    end
-  end
-
-  private
-  def user_params
-    params.permit(:email, :password)
   end
 end
