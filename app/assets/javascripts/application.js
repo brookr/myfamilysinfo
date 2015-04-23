@@ -11,5 +11,6 @@
 // about supported directives.
 //
 //= require angular_app
+//= require_tree .
 //= require jquery
 //= require jquery_ujs
