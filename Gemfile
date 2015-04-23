@@ -3,7 +3,6 @@ ruby '2.2.2'
 
 gem 'active_model_serializers'
 gem 'coffee-rails'
-gem 'devise'
 gem 'ffaker'
 gem 'figaro'
 gem 'jbuilder'
