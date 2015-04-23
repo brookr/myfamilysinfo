@@ -1,4 +1,4 @@
-<div class="container" ng-app="kid-events" ng-controller="KidEventController">
+
   <h1 class="text-center">Events</h1>
 
   <div class="btn-group" dropdown is-open="status.isopen" ng-controller="DropdownCtrl">
@@ -6,10 +6,10 @@
       Create a new Event <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" role="menu">
-      <li><a href="#">Medicine</a></li>
-      <li><a href="#">Height/Weight</a></li>
-      <li><a href="#">Temperature</a></li>
-      <li><a href="#">Symptom</a></li>
+      <li><a ng-click="form.setForm(1)">Medicine</a></li>
+      <li><a ng-click="form.setForm(2)">Symptom</a></li>
+      <li><a ng-click="form.setForm(3)">Height/Weight</a></li>
+      <li><a ng-click="form.setForm(4)">Temperature</a></li>
     </ul>
   </div>
 
@@ -25,5 +25,3 @@
     <a class="btn btn-primary btn-lg" ng-click="duplicate(event)">Duplicate</a>
     <a href='' class="btn btn-primary btn-lg" ng-click="delete(event)">Delete</a>
   </div>
-
-</div>

@@ -1,4 +1,4 @@
-<form name="newEvent" ng-submit="create()"><h2>New Event</h2><br>
+<form name="newEvent" ng-submit="create(form)"><h2>New Event</h2><br>
   <label for="datetime">Date:<br>
     <p class="input-group" ng-controller="DatepickerCtrl">
       <input type="text" class="form-control" datepicker-popup="MM/dd/yyyy" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="datetime" ng-model="event.datetime" />
@@ -13,23 +13,8 @@
   <label for="name">Name:<br>
     <input type="text" name="name" ng-model="event.name">
   </label><br>
-  <label for="type">Type:<br>
-    <input type="text" name="type" ng-model="event.type">
-  </label><br>
   <label for="amount">Amount:<br>
     <input type="text" name="amount" ng-model="event.amount">
-  </label><br>
-  <label for="description">Description:<br>
-    <input type="text" name="description" ng-model="event.description">
-  </label><br>
-  <label for="temperature">Temperature:<br>
-    <input type="text" name="temperature" ng-model="event.temperature">
-  </label><br>
-  <label for="height">Height:<br>
-    <input type="text" name="height" ng-model="event.height">
-  </label><br>
-  <label for="weight">Weight:<br>
-    <input type="text" name="weight" ng-model="event.weight">
   </label><br>
   <input type="submit" value="Submit" ng-disabled="newProduct.$invalid"/>
 </form>
