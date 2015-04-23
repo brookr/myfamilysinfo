@@ -1,5 +1,6 @@
 (function() {
   var app = angular.module('login-user', []);
+
   app.controller('LoginController', ['$http', '$scope', '$rootScope', function ($http, $scope, $rootScope) {
     login = this;
     login.credentials = {};
@@ -27,8 +28,23 @@
           $rootScope.getKidList();
         })
         .error(function(data){
-          login.errors.push("Email already exists");
+          console.log(data);
+          displayErrors(data);
         });
     };
+
+    function displayErrors ( data ) {
+      $.each(data.errors, function(key, value) {
+        switch(value.code){
+          case 'unique_field':
+            login.errors.push("That email address is taken (did you mean to click Login?)");
+            break;
+        }
+      });
+    }
+
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
   }]);
 })();
