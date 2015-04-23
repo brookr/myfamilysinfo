@@ -1,7 +1,7 @@
-<div class="container" ng-app="kid-events" ng-controller="KidEventController" ng-init="index()">
+<div class="container" ng-app="kid-events" ng-controller="KidEventController">
   <h1 class="text-center">Events</h1>
 
-  <div class="btn-group" dropdown is-open="status.isopen">
+  <div class="btn-group" dropdown is-open="status.isopen" ng-controller="DropdownCtrl">
     <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
       Create a new Event <span class="caret"></span>
     </button>
@@ -22,7 +22,8 @@
     <h3>{{event.temperature}}</h3>
     <h3>{{event.height}}</h3>
     <h3>{{event.weight}}</h3>
-    <a class="btn btn-primary btn-lg" href="#">Duplicate</a>
+    <a class="btn btn-primary btn-lg" ng-click="duplicate(event)">Duplicate</a>
+    <a href='' class="btn btn-primary btn-lg" ng-click="delete(event)">Delete</a>
   </div>
 
 </div>

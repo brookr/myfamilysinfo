@@ -1,14 +1,20 @@
 <form name="newEvent" ng-submit="create()"><h2>New Event</h2><br>
   <label for="datetime">Date:<br>
-    <p class="input-group" ng-controller="DatepickerDemoCtrl">
-      <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="datetime" ng-model="event.datetime" />
+    <p class="input-group" ng-controller="DatepickerCtrl">
+      <input type="text" class="form-control" datepicker-popup="MM/dd/yyyy" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="datetime" ng-model="event.datetime" />
       <span class="input-group-btn">
         <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
       </span>
     </p>
+    <div ng-controller="TimepickerCtrl">
+      <timepicker ng-model="mytime"></timepicker>
+    </div>
   </label><br>
   <label for="name">Name:<br>
     <input type="text" name="name" ng-model="event.name">
+  </label><br>
+  <label for="type">Type:<br>
+    <input type="text" name="type" ng-model="event.type">
   </label><br>
   <label for="amount">Amount:<br>
     <input type="text" name="amount" ng-model="event.amount">
