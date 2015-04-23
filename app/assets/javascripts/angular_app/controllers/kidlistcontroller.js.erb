@@ -1,7 +1,7 @@
 (function(){
   var app = angular.module('kid-list', []);
 
-  app.controller('KidListController', [ '$http', '$scope', function($http, $scope){
+  app.controller('KidListController', [ '$http', '$scope', '$rootScope', function($http, $scope, $rootScope){
     kidlist = this;
     kidlist.kids = [];
 
@@ -11,7 +11,7 @@
     kidlist.show_form = false;
 
     // TODO: remove this, just for testing
-    $scope.auth_token = '79vjpgBXz3S2AZHoN141';
+    $scope.auth_token = 'R_x23UQx-tW2BtCNwcxm';
 
     kidlist.index = function(){
       $http.get('/api/v1/kids?auth_token=' + $scope.auth_token)
@@ -32,7 +32,7 @@
 
     kidlist.setKid = function(kid){
       kidlist.current_kid = kid;
-      $scope.getevents();
+      $rootScope.getevents();
     };
   }]);
 })();
