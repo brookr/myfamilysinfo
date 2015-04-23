@@ -154,6 +154,10 @@ a:hover, a:active { color:#fff; text-decoration: underline; }
 	border:0;
 }
 
+.h3 {
+	color:black;
+}
+
 /***********************************************************/
 /*                   Theme: text shadows                   */
 /***********************************************************/
