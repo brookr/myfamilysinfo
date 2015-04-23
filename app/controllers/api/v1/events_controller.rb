@@ -1,7 +1,7 @@
 module API
   module V1
     class EventsController < API::V1::BaseController
-      skip_before_action :authenticate_user!
+      before_action :authenticate_user_from_token
 
       def index
         @kid = Kid.find(params[:kid_id])
