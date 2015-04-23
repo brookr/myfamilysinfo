@@ -1,26 +1,26 @@
 module API
   module V1
     class KidsController < API::V1::BaseController
-      skip_before_action :authenticate_user!
+      before_action :authenticate_user_from_token
 
       def index
-        @kids = current_user.kids
+        @kids = @current_user.kids
         render json: @kids, each_serializer: API::V1::KidShortSerializer, status: 200
       end
 
       def show
-        @kid = current_user.kids.find(params[:id])
+        @kid = @current_user.kids.find(params[:id])
         render json: @kid, status: 200
       end
 
       def create
-        @kid = current_user.kids.build(kid_params)
+        @kid = @current_user.kids.build(kid_params)
         @kid.save!
         render json: @kid, status: 201
       end
 
       def update
-        @kid = current_user.kids.find(params[:id])
+        @kid = @current_user.kids.find(params[:id])
         if allowed_to_edit!
           @kid.update!(kid_params)
           render json: @kid, status: 201
@@ -28,7 +28,7 @@ module API
       end
 
       def destroy
-        @kid = current_user.kids.find(params[:id])
+        @kid = @current_user.kids.find(params[:id])
         if allowed_to_edit!
           @kid.delete
           head 204
@@ -42,7 +42,7 @@ module API
       end
 
       def allowed_to_edit!
-        return true if @kid.parent_id == current_user.id
+        return true if @kid.parent_id == @current_user.id
         render_404 && false
       end
     end

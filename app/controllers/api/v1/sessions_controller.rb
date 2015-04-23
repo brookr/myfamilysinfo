@@ -2,8 +2,7 @@ module API
   module V1
     class SessionsController < API::V1::BaseController
       before_action :user_from_credentials
-      skip_before_action :authenticate_user_from_token!
-
+      
       def create
         return invalid_login_attempt unless @user
         render json: @user, status: 201

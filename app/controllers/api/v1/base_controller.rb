@@ -7,18 +7,12 @@ module API
       include ActionController::HttpAuthentication::Token
 
       skip_before_action :verify_authenticity_token
-      before_action :authenticate_user_from_token
 
       private
 
       def authenticate_user_from_token
         @current_user = User.find_by(authentication_token: get_auth_token)
         raise UnauthorizedError unless @current_user
-        @current_user
-      end
-
-      def current_user
-        @current_user ||= authenticate_user_from_token
       end
 
       def default_serializer_options
