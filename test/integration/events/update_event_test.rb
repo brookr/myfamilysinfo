@@ -4,29 +4,22 @@ class UpdatingSingleEventTest < ActionDispatch::IntegrationTest
   before do
     @user = users(:liam)
     @kid = kids(:Jimmy)
-    @medicine     = Reminder.create!({ type: 'Medicine', name: 'Tylenol', amount: '2 pills' })
+    @medicine     = Reminder.create!({ type: 'Medicine', meds: 'Tylenol 2 pills' })
     @heightweight = Reminder.create!({ type: 'HeightWeight', height: "3'10", weight: '85 lbs' })
     @temperature  = Reminder.create!({ type: 'Temperature', temperature: '98.6' })
     @symptom      = Reminder.create!({ type: 'Symptom', description: 'Bumps on Arms' })
   end
 
   test 'update an existing Meidicine event' do
-    patch "/api/v1/kids/#{@kid.id}/events/#{@medicine.id}?auth_token=#{@user[:authentication_token]}", { event: { amount: '3 pills' } },
+    patch "/api/v1/kids/#{@kid.id}/events/#{@medicine.id}?auth_token=#{@user[:authentication_token]}", { event: { meds: '3 pills' } },
           { 'Accept' => 'application/json',
             'Content_type' => 'application/json' }
     assert_equal 200, response.status
-    assert_equal '3 pills', @medicine.reload.amount
+    assert_equal '3 pills', @medicine.reload.meds
   end
 
   test 'update Medicine event without an amount raises error' do
-    patch "/api/v1/kids/#{@kid.id}/events/#{@medicine.id}?auth_token=#{@user[:authentication_token]}", { event: { amount: nil } },
-          { 'Accept' => 'application/json',
-            'Content_type' => 'application/json' }
-    assert_equal 422, response.status
-  end
-
-  test 'update Medicine event without a name raises error' do
-    patch "/api/v1/kids/#{@kid.id}/events/#{@medicine.id}?auth_token=#{@user[:authentication_token]}", { event: { name: nil } },
+    patch "/api/v1/kids/#{@kid.id}/events/#{@medicine.id}?auth_token=#{@user[:authentication_token]}", { event: { meds: nil } },
           { 'Accept' => 'application/json',
             'Content_type' => 'application/json' }
     assert_equal 422, response.status

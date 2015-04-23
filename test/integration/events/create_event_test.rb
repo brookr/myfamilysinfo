@@ -8,8 +8,7 @@ class CreatingEventsTest < ActionDispatch::IntegrationTest
 
   test 'creating a new Medicine event' do
     post "/api/v1/kids/#{@kid.id}/events?auth_token=#{@user[:authentication_token]}",
-         { name: 'Tylenol', type: 'Medicine',
-           amount: '2 pills',
+         { meds: 'Tylenol 2 pills', type: 'Medicine',
            datetime: '20-04-2015T12:20:00' }.to_json,
          { 'Accept' => 'application/json',
            'Content-Type' => 'application/json' }
@@ -17,23 +16,13 @@ class CreatingEventsTest < ActionDispatch::IntegrationTest
     assert_equal 201, response.status
     assert_equal Mime::JSON, response.content_type
     event = json(response.body)
-    assert_equal 'Tylenol', event[:name]
-    assert_equal '2 pills', event[:amount]
+    assert_equal 'Tylenol 2 pills', event[:meds]
     assert_equal '20-04-2015T12:20:00', event[:datetime]
   end
 
-  test 'does not create a Medicine event without a name' do
+  test 'does not create a Medicine event without meds' do
     post "/api/v1/kids/#{@kid.id}/events?auth_token=#{@user[:authentication_token]}",
-         { type: 'Medicine', amount: '1 pill' }.to_json,
-         { 'Accept' => 'application/json',
-           'Content-Type' => 'application/json' }
-
-    assert_equal 422, response.status
-  end
-
-  test 'does not create a Medicine event without an amount' do
-    post "/api/v1/kids/#{@kid.id}/events?auth_token=#{@user[:authentication_token]}",
-         { type: 'Medicine', name: 'Aspirin' }.to_json,
+         { type: 'Medicine', meds: nil }.to_json,
          { 'Accept' => 'application/json',
            'Content-Type' => 'application/json' }
 

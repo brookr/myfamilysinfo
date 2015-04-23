@@ -30,7 +30,7 @@ module API
       private
 
       def event_params
-        params.require(:event).permit(:name, :type, :datetime, :amount, :temperature,
+        params.require(:event).permit(:meds, :type, :datetime, :temperature,
                                       :height, :weight, :description, :kid_id)
       end
     end

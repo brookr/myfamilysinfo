@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422195757) do
+ActiveRecord::Schema.define(version: 20150423190617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,17 +41,16 @@ ActiveRecord::Schema.define(version: 20150422195757) do
   add_index "relationships", ["user_id"], name: "index_relationships_on_user_id", using: :btree
 
   create_table "reminders", force: :cascade do |t|
-    t.string   "name"
     t.integer  "kid_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "datetime"
     t.string   "type"
-    t.string   "amount"
     t.string   "temperature"
     t.string   "height"
     t.string   "weight"
     t.string   "description"
+    t.string   "meds"
   end
 
   add_index "reminders", ["kid_id"], name: "index_reminders_on_kid_id", using: :btree

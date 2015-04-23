@@ -2,8 +2,7 @@
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: Advil
-  amount: 1 pill
+  meds: Advil 1 pill
   kid: Jenny
   type: Medicine
 two:
@@ -11,9 +10,8 @@ two:
   kid: Jimmy
   temperature: '98.6'
 three:
-  name: Tylenol
+  meds: Tylenol 2 pills
   type: Medicine
-  amount: 2 pills
   kid: Lola
 four:
   type: HeighWeight
