@@ -1,6 +1,14 @@
 <div ng-app='crummy'>
   <div ng-hide='current_user'>
     <!-- Login/signup form will go here -->
+    <form name="loginForm" ng-controller="LoginController as loginCtrl" ng-submit ="loginCtrl.login(credentials)" novalidate>
+      <label for="email">Email:</label>
+      <input type="text" id="email" ng-model="credentials.email">
+      <label for="password">Password:</label>
+      <input type="text" id="password", ng-model="credentials.password">
+      {{$rootScope.current_user.authentication_token}}
+      <button type="submit">Login</button>
+  </form>
   </div>
   <div ng-controller='KidListController as kidlist' ng-init='getKidList()'>
     <div class='container'>
