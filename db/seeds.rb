@@ -17,7 +17,6 @@ require 'ffaker'
   User.new.tap do |u|
     u.email = FFaker::Internet.email
     u.password = 'password'
-    u.name = FFaker::Name.name
     u.save!
   end
 end
@@ -40,7 +39,7 @@ Kid.all.each do |k|
     r.type = ["Medicine", "Temperature", "HeightWeight", "Symptom"][(rand * 4).to_i]
     case r.type
     when "Medicine"
-      r.name = FFaker::Product.product_name
+      r.meds = FFaker::Product.product_name
     when "Temperature"
       r.temperature = (rand*10) + 95
     when "HeightWeight"
