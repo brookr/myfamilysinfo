@@ -17,10 +17,11 @@
 
     $rootScope.getevents = $scope.index;
 
-    $scope.create = function() {
+    $scope.create = function(form) {
       console.log($scope.event);
       $http.post('/api/v1/kids/' + $scope.kidlist.current_kid.id + '/events?auth_token=' + $scope.auth_token, $scope.event)
         .success(function(data) {
+          form.setForm(0);
           $scope.events.push(data);
           $scope.event = {};
         });
