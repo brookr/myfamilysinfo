@@ -11,11 +11,8 @@
 // about supported directives.
 //
 //= require angular_app
-<<<<<<< HEAD
 //= require modernizr.custom
-=======
 //= require_tree .
->>>>>>> master
 //= require jquery
 //= require jquery_ujs
 

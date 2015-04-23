@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag "crummy", media: "all" %>
 <section class="section" id="head">
 	<div class="container">
 		<div class="row">
@@ -13,7 +14,7 @@
 				</h3>
 
 				<p>Site description?</p>
-				<button>Login</button>
+				<button><%= link_to 'Login', app_path %></button>
 				<button>Sign Up</button>
 
 			</div>
