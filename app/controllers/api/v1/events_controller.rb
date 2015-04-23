@@ -10,7 +10,8 @@ module API
       end
 
       def create
-        event = Reminder.new(event_params)
+        @kid = Kid.find(params[:kid_id])
+        event = @kid.reminders.build(event_params)
         event.save!
         render json: event, serializer: EventSerializer, status: 201
       end
