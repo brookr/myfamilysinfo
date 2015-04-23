@@ -1,7 +1,7 @@
 (function(){
   var app = angular.module('kid-list', []);
 
-  app.controller('KidListController', [ '$http', '$scope', function($http, $scope){
+  app.controller('KidListController', [ '$http', '$scope', '$rootScope', function($http, $scope, $rootScope){
     kidlist = this;
     kidlist.kids = [];
 
@@ -32,7 +32,7 @@
 
     kidlist.setKid = function(kid){
       kidlist.current_kid = kid;
-      $scope.getevents();
+      $rootScope.getevents();
     };
   }]);
 })();
