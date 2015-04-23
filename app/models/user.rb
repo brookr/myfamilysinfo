@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   before_save :ensure_authentication_token
 
   validates :password, presence: true, on: :create
-  validates :email, presence: true
+  validates_format_of :email, with: /\A.+@.+\..+\Z/i
 
   def ensure_authentication_token
     if authentication_token.blank?
