@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20150423020724) do
   enable_extension "plpgsql"
 
   create_table "kids", force: :cascade do |t|
-    t.string   "name",         limit: 255
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "insurance_id"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150423020724) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "role",       limit: 255
+    t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "kid_id"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20150423020724) do
   add_index "relationships", ["user_id"], name: "index_relationships_on_user_id", using: :btree
 
   create_table "reminders", force: :cascade do |t|
-    t.string   "name",        limit: 255
+    t.string   "name"
     t.integer  "kid_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -57,12 +57,10 @@ ActiveRecord::Schema.define(version: 20150423020724) do
   add_index "reminders", ["kid_id"], name: "index_reminders_on_kid_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                limit: 255, default: "", null: false
+    t.string   "email",                default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "authentication_token"
-    t.string   "password_hash"
-    t.string   "password_salt"
     t.string   "password_digest"
   end
 
