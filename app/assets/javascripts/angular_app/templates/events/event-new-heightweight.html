@@ -1,0 +1,21 @@
+<form name="newEvent" ng-submit="create(form)"><h2>New Event</h2><br>
+  <label for="datetime">Date:<br>
+    <p class="input-group" ng-controller="DatepickerCtrl">
+      <input type="text" class="form-control" datepicker-popup="MM/dd/yyyy" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="datetime" ng-model="event.datetime" />
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span>
+    </p>
+    <div ng-controller="TimepickerCtrl">
+      <timepicker ng-model="mytime"></timepicker>
+    </div>
+  </label><br>
+  <label for="height">Height:<br>
+    <input type="text" name="height" ng-model="event.height">
+  </label><br>
+  <label for="weight">Weight:<br>
+    <input type="text" name="weight" ng-model="event.weight">
+  </label><br>
+  <input type="hidden" name="type" value="HeightWeight" ng-model="event.type">
+  <input type="submit" value="Submit" ng-disabled="newProduct.$invalid"/>
+</form>

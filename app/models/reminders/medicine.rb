@@ -1,4 +1,3 @@
 class Medicine < Reminder
-  validates :name, presence: true
-  validates :amount, presence: true
+  validates :meds, presence: true
 end
