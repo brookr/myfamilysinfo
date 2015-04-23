@@ -1,3 +1,21 @@
-app.controller('LoginController', function ($scope, $rootScope, AUTH_EVENTS, AuthService) {
+(function() {
+  var app = angular.module('login-user', []);
+  app.controller('LoginController', ['$http', '$scope', function ($http, $scope, $rootScope) {
+    $scope.credentials = {
+      email: '',
+      password: ''
+    };
 
-}
+    this.login = function (credentials) {
+      $http.post('/api/v1/sessions', credentials)
+      .success(function(data){
+        $rootScope.current_user = data;
+        console.log($rootScope.current_user);
+      })
+      .error(function(data, status){
+        console.log(status);
+        $scope.errors.push(status);
+      });
+    };
+  }]);
+})();

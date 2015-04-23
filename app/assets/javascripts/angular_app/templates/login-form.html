@@ -1,8 +1,8 @@
   <form name = "loginForm" ng-controller="LoginController as loginCtrl"
-                ng-sumbit ="loginForm.$valid && loginCtrl.login(credentials)" novalidate>
+                ng-submit ="loginForm.$valid && loginCtrl.login(credentials)" novalidate>
     <label for="email">Email:</label>
     <input type="text" id="email" ng-model="credentials.email">
     <label for="password">Password:</label>
-    <input type="text" id="password", ng-model="credentails.password">
+    <input type="text" id="password", ng-model="credentials.password">
     <button type="submit">Login</button>
   </form>

@@ -4,7 +4,7 @@ Myfamilysinfo::Application.routes.draw do
   root :to => 'angular#index'
   get 'app', to: 'angular#app'
 
-  devise_for :user
+  devise_for :users, :controllers => {sessions: 'sessions'}
 
   devise_scope :user do
     match '/api/v1/sessions', to: 'api/v1/sessions#create', via: :post
@@ -25,7 +25,7 @@ Myfamilysinfo::Application.routes.draw do
         resources :events, except: [:show, :edit, :new]
       end
       resources :users, only: [:create, :update]
-      resources :sessions, only: [:create]
+      # resources :sessions, only: [:create]
     end
   end
 end
