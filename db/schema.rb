@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(version: 20150423195057) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "insurance_id"
+    t.string   "nurse_phone"
     t.integer  "parent_id"
     t.date     "dob"
-    t.string   "nurse_phone"
-    t.string   "insurance_id"
     t.string   "notes"
   end
 
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20150423195057) do
     t.integer  "kid_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "datetime"
     t.string   "type"
-    t.datetime "datetime"
     t.string   "temperature"
     t.string   "height"
     t.string   "weight"
