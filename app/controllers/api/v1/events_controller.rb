@@ -1,7 +1,7 @@
 module API
   module V1
     class EventsController < API::V1::BaseController
-      skip_before_action :authenticate_user!
+      before_action :authenticate_user_from_token
 
       def index
         @kid = Kid.find(params[:kid_id])
@@ -10,7 +10,8 @@ module API
       end
 
       def create
-        event = Reminder.new(event_params)
+        @kid = Kid.find(params[:kid_id])
+        event = @kid.reminders.build(event_params)
         event.save!
         render json: event, serializer: EventSerializer, status: 201
       end
@@ -30,7 +31,7 @@ module API
       private
 
       def event_params
-        params.require(:event).permit(:name, :type, :datetime, :amount, :temperature,
+        params.require(:event).permit(:meds, :type, :datetime, :temperature,
                                       :height, :weight, :description, :kid_id)
       end
     end

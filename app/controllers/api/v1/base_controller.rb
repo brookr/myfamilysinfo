@@ -1,23 +1,18 @@
 module API
   module V1
     class BaseController < ApplicationController
-      skip_before_action :verify_authenticity_token
-      before_action :authenticate_user_from_token!
+      class UnauthorizedError < RuntimeError
+      end
 
-      prepend_before_filter :get_auth_token
+      include ActionController::HttpAuthentication::Token
+
+      skip_before_action :verify_authenticity_token
 
       private
 
-      def authenticate_user_from_token!
-        authenticate_with_http_token do |token, options|
-          @token = token
-        end
-        @token ||= params[:auth_token]
-        if user = User.find_by(authentication_token: @token)
-          sign_in user, store: false
-        else
-          render_401
-        end
+      def authenticate_user_from_token
+        @current_user = User.find_by(authentication_token: get_auth_token)
+        raise UnauthorizedError unless @current_user
       end
 
       def default_serializer_options
@@ -25,14 +20,15 @@ module API
       end
 
       def get_auth_token
-        if auth_token = params[:auth_token].blank? && request.headers["X-AUTH-TOKEN"]
-          params[:auth_token] = auth_token
-        end
+        auth_header = request.env['HTTP_AUTHORIZATION']
+        token = auth_header && auth_header.split('=').last
+        token || params[:auth_token]
       end
+
+      rescue_from UnauthorizedError, with: :render_401
 
       rescue_from ActionController::RoutingError, with: :render_404
       rescue_from ActiveRecord::RecordNotFound, with: :render_404
-      rescue_from Pundit::NotAuthorizedError, with: :render_404
 
       rescue_from ActiveRecord::RecordInvalid do |exception|
         render_422(exception.record)
@@ -47,11 +43,7 @@ module API
       end
 
       def render_401
-        render unauthorized_error
-      end
-
-      def unauthorized_error
-        { json: { "message": "Authentication token missing or invalid"}, status: 401 }
+        render json: { "message": "Authentication token missing or invalid"}, status: 401
       end
 
       def render_404

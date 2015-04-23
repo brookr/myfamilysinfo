@@ -1,6 +1,14 @@
 <div ng-app='crummy'>
   <div ng-hide='current_user'>
     <!-- Login/signup form will go here -->
+    <form name="loginForm" ng-controller="LoginController as loginCtrl" ng-submit ="loginCtrl.login(credentials)" novalidate>
+      <label for="email">Email:</label>
+      <input type="text" id="email" ng-model="credentials.email">
+      <label for="password">Password:</label>
+      <input type="text" id="password", ng-model="credentials.password">
+      {{$rootScope.current_user.authentication_token}}
+      <button type="submit">Login</button>
+  </form>
   </div>
   <div ng-controller='KidListController as kidlist' ng-init='getKidList()'>
     <div class='container'>
@@ -8,7 +16,7 @@
         <div class='col-sm-4'>
           <div id='kidlist' class='list-group'>
             <div class='list-group-item'><h4>Kids</h4></div>
-            <a ng-repeat='kid in kidlist.kids' class='list-group-item' ng-class='{ active: kidlist.current_kid == kid }' ng-click='kidlist.current_kid = kid'>
+            <a ng-repeat='kid in kidlist.kids' class='list-group-item' ng-class='{ active: kidlist.current_kid == kid }' ng-click='kidlist.setKid(kid)'>
               {{kid.name}}
             </a>
             <div class='list-group-item' ng-hide='kidlist.show_form'>
@@ -24,10 +32,14 @@
           <div class='container'>
             <div class='row'><div class='col-xs-12'>
               <!-- kid details here -->
-            </div></div>
+
+            </div>
             <div class='row'><div class='col-xs-12'>
-              <!-- events here -->
-            </div></div>
+              <div class="container" ng-app="kid-events" ng-controller="KidEventController">
+                <event-index></event-index>
+                <event-forms></event-forms>
+              </div>
+            </div>
           </div>
         </div>
       </div>
