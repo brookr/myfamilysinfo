@@ -1,17 +1,34 @@
 (function() {
   var app = angular.module('login-user', []);
   app.controller('LoginController', ['$http', '$scope', '$rootScope', function ($http, $scope, $rootScope) {
-    this.credentials = {};
+    login = this;
+    login.credentials = {};
+    login.errors = [];
 
-    this.login = function(){
-      $http.post('/api/v1/sessions', this.credentials)
-      .success(function(data){
-        $rootScope.current_user = data;
-        console.log(data);
-        $rootScope.getKidList();
-      })
-      .error(function(data, status){
-      });
+    login.login = function(){
+      login.errors = [];
+
+      $http.post('/api/v1/sessions', login.credentials)
+        .success(function(data){
+          $rootScope.current_user = data;
+          $rootScope.getKidList();
+        })
+        .error(function(data, status){
+          login.errors.push("Invalid email or password");
+        });
+    };
+
+    login.signup = function(){
+      login.errors = [];
+
+      $http.post('/api/v1/users', login.credentials)
+        .success(function(data){
+          $rootScope.current_user = data;
+          $rootScope.getKidList();
+        })
+        .error(function(data){
+          login.errors.push("Email already exists");
+        });
     };
   }]);
 })();
