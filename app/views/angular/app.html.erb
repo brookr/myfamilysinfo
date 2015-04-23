@@ -25,72 +25,11 @@
             <div class='row'><div class='col-xs-12'>
               <!-- kid details here -->
 
-            </div></div>
+            </div>
             <div class='row'><div class='col-xs-12'>
               <div class="container" ng-app="kid-events" ng-controller="KidEventController">
-                <h1 class="text-center">Events</h1>
-
-                <div class="btn-group" dropdown is-open="status.isopen" ng-controller="DropdownCtrl">
-                  <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-                    Create a new Event <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Medicine</a></li>
-                    <li><a href="#">Height/Weight</a></li>
-                    <li><a href="#">Temperature</a></li>
-                    <li><a href="#">Symptom</a></li>
-                  </ul>
-                </div>
-
-                <div class="list-group-item" ng-repeat="event in events">
-                  <h3 class="text-center">Date: {{event.datetime}}</h3>
-                  <h3 class="text-center">Type: {{event.type}}</h3>
-                  <h3>{{event.name}}</h3>
-                  <h3>{{event.amount}}</h3>
-                  <h3>{{event.description}}</h3>
-                  <h3>{{event.temperature}}</h3>
-                  <h3>{{event.height}}</h3>
-                  <h3>{{event.weight}}</h3>
-                  <a class="btn btn-primary btn-lg" ng-click="duplicate(event)">Duplicate</a>
-                  <a href='' class="btn btn-primary btn-lg" ng-click="delete(event)">Delete</a>
-                </div>
-<form name="newEvent" ng-submit="create()"><h2>New Event</h2><br>
-  <label for="datetime">Date:<br>
-    <p class="input-group" ng-controller="DatepickerCtrl">
-      <input type="text" class="form-control" datepicker-popup="MM/dd/yyyy" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="datetime" ng-model="event.datetime" />
-      <span class="input-group-btn">
-        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-      </span>
-    </p>
-    <div ng-controller="TimepickerCtrl">
-      <timepicker ng-model="mytime"></timepicker>
-    </div>
-  </label><br>
-  <label for="name">Name:<br>
-    <input type="text" name="name" ng-model="event.name">
-  </label><br>
-  <label for="type">Type:<br>
-    <input type="text" name="type" ng-model="event.type">
-  </label><br>
-  <label for="amount">Amount:<br>
-    <input type="text" name="amount" ng-model="event.amount">
-  </label><br>
-  <label for="description">Description:<br>
-    <input type="text" name="description" ng-model="event.description">
-  </label><br>
-  <label for="temperature">Temperature:<br>
-    <input type="text" name="temperature" ng-model="event.temperature">
-  </label><br>
-  <label for="height">Height:<br>
-    <input type="text" name="height" ng-model="event.height">
-  </label><br>
-  <label for="weight">Weight:<br>
-    <input type="text" name="weight" ng-model="event.weight">
-  </label><br>
-
-  <input type="submit" value="Submit" ng-disabled="newProduct.$invalid"/>
-</form>
-
+                <event-index></event-index>
+                <event-forms></event-forms>
               </div>
             </div>
           </div>

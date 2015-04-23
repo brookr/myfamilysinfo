@@ -1,0 +1,58 @@
+(function() {
+  var app = angular.module('event-directives', []);
+
+  app.directive("eventIndex", function() {
+    return {
+      restrict: 'E',
+      templateUrl: '<%= asset_path("angular_app/templates/events/event-index.html") %>'
+    };
+  });
+
+  app.directive("eventNewMedicine", function() {
+    return {
+      restrict: 'E',
+      templateUrl: '<%= asset_path("angular_app/templates/events/event-new-medicine.html") %>'
+    };
+  });
+
+  app.directive("eventNewSymptom", function() {
+    return {
+      restrict: 'E',
+      templateUrl: '<%= asset_path("angular_app/templates/events/event-new-symptom.html") %>'
+    };
+  });
+
+  app.directive("eventNewTemperature", function() {
+    return {
+      restrict: 'E',
+      templateUrl: '<%= asset_path("angular_app/templates/events/event-new-temperature.html") %>'
+    };
+  });
+
+  app.directive("eventNewHeightWeight", function() {
+    return {
+      restrict: 'E',
+      templateUrl: '<%= asset_path("angular_app/templates/events/event-new-heightweight.html") %>'
+    };
+  });
+
+  app.directive("eventForms", function() {
+    return {
+      restrict: 'E',
+      templateUrl: '<%= asset_path("angular_app/templates/events/event-forms.html") %>',
+      controller: function() {
+        this.form = 0;
+
+        this.isSet = function(checkForm) {
+          return this.form === checkForm;
+        };
+
+        this.setForm = function(activeForm) {
+          this.form = activeForm;
+        };
+      },
+      controllerAs: "form"
+    };
+  })
+
+})();
