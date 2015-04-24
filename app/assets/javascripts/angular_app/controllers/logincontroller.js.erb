@@ -1,21 +1,50 @@
 (function() {
   var app = angular.module('login-user', []);
-  app.controller('LoginController', ['$http', '$scope', function ($http, $scope, $rootScope) {
-    $scope.credentials = {
-      email: '',
-      password: ''
+
+  app.controller('LoginController', ['$http', '$scope', '$rootScope', function ($http, $scope, $rootScope) {
+    login = this;
+    login.credentials = {};
+    login.errors = [];
+
+    login.login = function(){
+      login.errors = [];
+
+      $http.post('/api/v1/sessions', login.credentials)
+        .success(function(data){
+          $rootScope.current_user = data;
+          $rootScope.getKidList();
+        })
+        .error(function(data, status){
+          login.errors.push("Invalid email or password");
+        });
     };
 
-    this.login = function (credentials) {
-      $http.post('/api/v1/sessions', credentials)
-      .success(function(data){
-        $rootScope.current_user = data;
-        console.log($rootScope.current_user);
-      })
-      .error(function(data, status){
-        console.log(status);
-        $scope.errors.push(status);
-      });
+    login.signup = function(){
+      login.errors = [];
+
+      $http.post('/api/v1/users', login.credentials)
+        .success(function(data){
+          $rootScope.current_user = data;
+          $rootScope.getKidList();
+        })
+        .error(function(data){
+          console.log(data);
+          displayErrors(data);
+        });
     };
+
+    function displayErrors ( data ) {
+      $.each(data.errors, function(key, value) {
+        switch(value.code){
+          case 'unique_field':
+            login.errors.push("That email address is taken (did you mean to click Login?)");
+            break;
+        }
+      });
+    }
+
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
   }]);
 })();
