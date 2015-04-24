@@ -14,4 +14,3 @@
 //= require modernizr.custom
 //= require jquery
 //= require jquery_ujs
-//= require ui-bootstrap-tpls-0.12.1
