@@ -47,8 +47,13 @@
     return {
       restrict: 'E',
       templateUrl: '<%= asset_path("angular_app/templates/events/event-forms.html") %>',
-      controller: function() {
+      controller: ['kidChangeHandler', function(kidChangeHandler) {
         this.form = 0;
+        form = this;
+        form.hideForm = function() {
+          form.form = 0;
+        };
+        kidChangeHandler.add(form.hideForm);
 
         this.isSet = function(checkForm) {
           return this.form === checkForm;
@@ -57,7 +62,7 @@
         this.setForm = function(activeForm) {
           this.form = activeForm;
         };
-      },
+      }],
       controllerAs: "form"
     };
   })
