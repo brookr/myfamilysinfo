@@ -36,6 +36,13 @@
     };
   });
 
+  app.directive("eventEdit", function() {
+    return {
+      restrict: 'E',
+      templateUrl: '<%= asset_path("angular_app/templates/events/event-edit.html") %>'
+    };
+  });
+
   app.directive("eventForms", function() {
     return {
       restrict: 'E',
