@@ -2,10 +2,9 @@
   var app = angular.module('kid-list', ['kid-events', 'kid-details', 'kid-directives']);
 
   app.factory('kidChangeHandler', function(){
-    // var callbacks = [];
-
     return {
       callbacks: [],
+
       add: function(callback){
         this.callbacks.push(callback);
       },
@@ -18,7 +17,7 @@
     };
   });
 
-  app.controller('KidListController', [ 'kidChangeHandler', '$http', '$rootScope', function(kidChangeHandler, $http, $rootScope){
+  app.controller('KidListController', [ 'kidChangeHandler', 'loginEventHandler', '$http', '$rootScope', function(kidChangeHandler, loginEventHandler, $http, $rootScope){
     kidlist = this;
     kidlist.kids = [];
 
@@ -34,7 +33,7 @@
         });
     };
     // put kidlist index function into the global scope so it can be called after a session is created
-    $rootScope.getKidList = kidlist.index;
+    loginEventHandler.add(kidlist.index);
 
     kidlist.create = function(){
       $http.post('/api/v1/kids?auth_token=' + $rootScope.current_user.authentication_token, kidlist.new_kid)

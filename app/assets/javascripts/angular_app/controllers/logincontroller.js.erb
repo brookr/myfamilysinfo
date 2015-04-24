@@ -1,7 +1,22 @@
 (function() {
   var app = angular.module('login-user', []);
 
-  app.controller('LoginController', ['$http', '$scope', '$rootScope', function ($http, $scope, $rootScope) {
+  app.factory('loginEventHandler', function() {
+    return {
+      callbacks: [],
+      add: function(callback){
+        this.callbacks.push(callback);
+      },
+
+      trigger: function(){
+        $.each(this.callbacks, function(i, callback){
+          callback();
+        });
+      }
+    };
+  });
+
+  app.controller('LoginController', ['$http', '$scope', '$rootScope', 'loginEventHandler', function ($http, $scope, $rootScope, loginEventHandler) {
     login = this;
     login.credentials = {};
     login.errors = [];
@@ -32,7 +47,7 @@
     function loginUser(user) {
       localStorage.setItem('user', JSON.stringify(user));
       $rootScope.current_user = user;
-      $rootScope.getKidList();
+      loginEventHandler.trigger();
     }
 
     login.signup = function(){
