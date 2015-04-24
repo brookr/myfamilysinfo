@@ -1,16 +1,35 @@
 (function(){
   var app = angular.module('kid-details', []);
 
-  app.controller('KidDetailController', [ '$http', '$rootScope', function($http, $rootScope){
+  app.controller('KidDetailController', [ 'kidChangeHandler', '$http', '$rootScope', function(kidChangeHandler, $http, $rootScope){
     kiddetails = this;
     kiddetails.kid = {};
 
-    kiddetails.show = function(){
-      $http.get('/api/v1/kids/' + kidlist.current_kid.id)
+    kiddetails.show = function(id){
+      $http.get('/api/v1/kids/' + id + '?auth_token=' + $rootScope.current_user.authentication_token)
         .success(function(data){
           kiddetails.kid = data;
         });
     };
-    $rootScope.getKidDetails = kiddetails.show;
+    kidChangeHandler.add(kiddetails.show);
+
+    kiddetails.update = function(){
+      $http.patch('/api/v1/kids/' + kiddetails.kid.id + '?auth_token=' + $rootScope.current_user.authentication_token, kiddetails.kid)
+        .success(function(data){
+          kiddetails.kid = data;
+          kiddetails.editing = false;
+        });
+    };
+
+    kiddetails.delete = function(){
+      if(!confirm("Are you sure you want to delete " + kiddetails.kid.name + "?"))
+        return;
+      $http.delete('/api/v1/kids/' + kiddetails.kid.id + '?auth_token=' + $rootScope.current_user.authentication_token)
+        .success(function(data){
+          kidlist.remove(kiddetails.kid.id);
+          kiddetails.kid = null;
+          kiddetails.editing = false;
+        });
+    }
   }]);
 })();

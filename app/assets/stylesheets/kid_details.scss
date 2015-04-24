@@ -1,16 +1,19 @@
 #kid_details {
-  input {
+  input, textarea {
     display: none;
   }
-  .field .span {
+  .field span {
     display: inline-block;
   }
 }
 #kid_details.editing {
-  #input {
+  input {
     display: inline-block;
   }
-  .field .span {
+  textarea {
+    display: block;
+  }
+  .field span {
     display: none;
   }
 }
