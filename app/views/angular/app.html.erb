@@ -1,21 +1,18 @@
 <div ng-app='crummy'>
 
   <div ng-controller="LoginController as loginCtrl">
-    <div class="container">
-      <div class="row">
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="btn btn-default navbar-btn"
-             ng-show="current_user" ng-click="loginCtrl.logout()">Sign Out</button>
-          </div>
-        </div>
-      </nav>
-      </div>
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+     <h3>Crummy</h3>
     </div>
-    <login-form ng-hide="current_user"></login-form>
+      <button type="button" class="btn btn-default navbar-btn pull-right"
+      ng-show="current_user" ng-click="loginCtrl.logout()">Sign Out</button>
   </div>
+</nav>
+  <login-form ng-hide="current_user"></login-form>
 
+  </div>
   <div ng-controller='KidListController as kidlist' ng-show="current_user">
     <div class='container'>
       <div class='row'>

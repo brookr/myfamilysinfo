@@ -165,6 +165,9 @@ a:hover, a:active { color:#fff; text-decoration: underline; }
 .modalButton{
 	color:black;
 }
+.navbutton {
+    margin-right: -2px;
+}
 /***********************************************************/
 /*                   Theme: text shadows                   */
 /***********************************************************/
