@@ -14,6 +14,8 @@
   <label for="weight">Weight:<br>
     <input type="number" name="weight" ng-model="event.weight" ng-required="true">
   </label><br>
-  <input type="submit" value="Submit"/>
-  <a ng-click="form.setForm(0); clearformdata()">Back</a>
+  <div class="submit-buttons">
+    <input class="btn btn-primary btn-sm" type="submit" value="Submit"/>
+    <a class="btn btn-primary btn-sm" ng-click="form.setForm(0); clearformdata()">Back</a>
+  </div>
 </form>
