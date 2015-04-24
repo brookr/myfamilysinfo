@@ -1,4 +1,4 @@
-<form name="newEvent" ng-submit="create(form)"><h2>New Event</h2><br>
+<form name="newEvent" ng-submit="create(form, 'Temperature')"><h2>New Event</h2><br>
   <label for="datetime">Date:<br>
     <p class="input-group" ng-controller="DatepickerCtrl">
       <input type="text" class="form-control" datepicker-popup="MM/dd/yyyy" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="datetime" ng-model="event.datetime" />
@@ -11,7 +11,8 @@
     </div>
   </label><br>
   <label for="temperature">Temperature:<br>
-    <input type="text" name="temperature" ng-model="event.temperature">
+    <input type="text" name="temperature" ng-model="event.temperature" ng-required="true">
   </label><br>
-  <input type="submit" value="Submit" ng-disabled="newProduct.$invalid"/>
+  <input type="submit" value="Submit"/>
+  <a ng-click="form.setForm(0); clearformdata()">Back</a>
 </form>
