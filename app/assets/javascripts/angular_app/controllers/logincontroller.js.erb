@@ -6,26 +6,35 @@
     login.credentials = {};
     login.errors = [];
 
+    user = localStorage.getItem('user');
+    if(user) {
+      loginUser(JSON.parse(user));
+    }
+
     login.login = function(){
       login.errors = [];
 
       $http.post('/api/v1/sessions', login.credentials)
         .success(function(data){
-          $rootScope.current_user = data;
-          $rootScope.getKidList();
+          loginUser(data);
         })
         .error(function(data, status){
           login.errors.push("Invalid email or password");
         });
     };
 
+    function loginUser(user) {
+      localStorage.setItem('user', JSON.stringify(user));
+      $rootScope.current_user = user;
+      $rootScope.getKidList();
+    }
+
     login.signup = function(){
       login.errors = [];
 
       $http.post('/api/v1/users', login.credentials)
         .success(function(data){
-          $rootScope.current_user = data;
-          $rootScope.getKidList();
+          loginUser(data);
         })
         .error(function(data){
           console.log(data);
