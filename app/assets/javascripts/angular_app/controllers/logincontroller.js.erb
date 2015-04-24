@@ -50,6 +50,17 @@
       window.location.href = '/'    ;
     };
 
+    login.update = function() {
+      console.log(user = $rootScope.current_user);
+      $http.patch('/api/v1/users/' + user.id + "?auth_token=" + user.authentication_token, login.credentials)
+      .success(function(data){
+        window.location.href = 'app';
+      })
+      .error(function(data, status) {
+        login.errors.push("Invalid email or password");
+      });
+    };
+
     function loginUser(user) {
       localStorage.setItem('user', JSON.stringify(user));
       $rootScope.current_user = user;
