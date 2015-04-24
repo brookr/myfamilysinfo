@@ -19,6 +19,13 @@
         });
     };
 
+    login.logout = function(){
+      console.log("Here");
+      localStorage.removeItem('user');
+      $rootScope.current_user = null;
+      window.location.href = 'app';
+    };
+
     login.signup = function(){
       login.errors = [];
 
