@@ -15,7 +15,8 @@
   </div>
   <div class="list-group-item" ng-repeat="event in events">
     <div class='container-fluid' ng-controller="KidEditController">
-      <h3 class="text-center">Date: {{event.datetime | date: 'MM/dd/yyyy'}}</h3>
+      <h3 class="text-center">Date: {{event.datetime | date: 'M/dd/yyyy'}}</h3>
+      <h3 class="text-center">Time: {{event.time | date: 'h:mm a'}}
       <h3 class="text-center">Type: {{event.type}}</h3>
       <h3 ng-show="event.meds">Meds: {{event.meds}}</h3>
       <h3>{{event.description}}</h3>
