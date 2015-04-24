@@ -1,7 +1,7 @@
 (function() {
-  var app = angular.module('kid-events', []);
+  var app = angular.module('kid-events', ['event-directives']);
 
-  app.controller('KidEventController', [ '$http', '$scope', '$rootScope', function($http, $scope, $rootScope){
+  app.controller('KidEventController', [ 'kidChangeHandler', '$http', '$scope', '$rootScope', function(kidChangeHandler, $http, $scope, $rootScope){
     $scope.events = [];
     $scope.event  = {};
 
@@ -26,8 +26,7 @@
           }).reverse();
         });
     };
-
-    $rootScope.getevents = $scope.index;
+    kidChangeHandler.add($scope.index);
 
     $scope.create = function(form, type) {
       $scope.event.type = type;

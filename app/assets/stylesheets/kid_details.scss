@@ -1,0 +1,19 @@
+#kid_details {
+  input, textarea {
+    display: none;
+  }
+  .field span {
+    display: inline-block;
+  }
+}
+#kid_details.editing {
+  input {
+    display: inline-block;
+  }
+  textarea {
+    display: block;
+  }
+  .field span {
+    display: none;
+  }
+}
