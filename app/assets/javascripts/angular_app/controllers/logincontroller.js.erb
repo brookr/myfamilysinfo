@@ -8,13 +8,13 @@
 
       add: function(callback){
         this.callbacks.push(callback);
-        if(triggered) {
+        if(this.triggered) {
           callback();
         }
       },
 
       trigger: function(){
-        triggered = true;
+        this.triggered = true;
         $.each(this.callbacks, function(i, callback){
           callback();
         });
