@@ -9,20 +9,20 @@
     </p>
     <timepicker ng-model="event.time"></timepicker>
   </label><br>
-  <label ng-show="event.meds" for="meds">Meds:<br>
-    <input ng-show="event.meds" type="text" name="meds" ng-model="event.meds">
+  <label ng-show="event.type == 'Medicine'" for="meds">Meds:<br>
+    <input ng-show="event.type == 'Medicine'" type="text" name="meds" ng-model="event.meds">
   </label><br>
-  <label ng-show="event.description" for="description">Description:<br>
-    <input ng-show="event.description" type="text" name="description" ng-model="event.description">
+  <label ng-show="event.type == 'Symptom'" for="description">Description:<br>
+    <input ng-show="event.type == 'Symptom'" type="text" name="description" ng-model="event.description">
   </label><br>
-  <label ng-show="event.temperature" for="temperature">Temperature:<br>
-    <input ng-show="event.temperature" type="number" step="0.1" name="temperature" ng-model="event.temperature">
+  <label ng-show="event.type == 'Temperature'" for="temperature">Temperature:<br>
+    <input ng-show="event.type == 'Temperature'" type="number" step="0.1" name="temperature" ng-model="event.temperature">
   </label><br>
-  <label ng-show="event.height" for="height">Height:<br>
-    <input ng-show="event.height" type="text" name="height" ng-model="event.height">
+  <label ng-show="event.type == 'HeightWeight'" for="height">Height:<br>
+    <input ng-show="event.type == 'HeightWeight'" type="text" name="height" ng-model="event.height">
   </label><br>
-  <label ng-show="event.weight" for="weight">Weight:<br>
-    <input ng-show="event.weight" type="text" name="weight" ng-model="event.weight">
+  <label ng-show="event.type == 'HeightWeight'" for="weight">Weight:<br>
+    <input ng-show="event.type == 'HeightWeight'" type="text" name="weight" ng-model="event.weight">
   </label><br>
   <input type="submit" value="Submit"/>
 </form>
