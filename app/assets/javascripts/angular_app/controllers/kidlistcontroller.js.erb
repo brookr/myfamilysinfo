@@ -1,7 +1,24 @@
 (function(){
-  var app = angular.module('kid-list', []);
+  var app = angular.module('kid-list', ['kid-events', 'kid-details', 'kid-directives']);
 
-  app.controller('KidListController', [ '$http', '$rootScope', function($http, $rootScope){
+  app.factory('kidChangeHandler', function(){
+    // var callbacks = [];
+
+    return {
+      callbacks: [],
+      add: function(callback){
+        this.callbacks.push(callback);
+      },
+
+      trigger: function(kid){
+        $.each(this.callbacks, function(i, callback){
+          callback(kid);
+        });
+      }
+    };
+  });
+
+  app.controller('KidListController', [ 'kidChangeHandler', '$http', '$rootScope', function(kidChangeHandler, $http, $rootScope){
     kidlist = this;
     kidlist.kids = [];
 
@@ -27,9 +44,19 @@
         });
     };
 
+    kidlist.remove = function(id){
+      $.each(kidlist.kids, function(index, kid){
+        if(kid.id == id){
+          kidlist.kids.splice(index, 1);
+          kidlist.current_kid = null;
+          return;
+        }
+      });
+    };
+
     kidlist.setKid = function(kid){
       kidlist.current_kid = kid;
-      $rootScope.getevents();
+      kidChangeHandler.trigger(kid.id);
     };
   }]);
 })();

@@ -1,0 +1,17 @@
+(function() {
+  var app = angular.module('kid-directives', []);
+
+  app.directive("kidList", function() {
+    return {
+      restrict: 'E',
+      templateUrl: '<%= asset_path("angular_app/templates/kid-list.html") %>'
+    };
+  });
+
+  app.directive("kidDetailsDiv", function() {
+    return {
+      restrict: 'E',
+      templateUrl: '<%= asset_path("angular_app/templates/kid-details.html") %>'
+    };
+  });
+})();
