@@ -1,4 +1,4 @@
-<form name="newEvent" ng-submit="create(form)"><h2>New Event</h2><br>
+<form name="newEvent" ng-submit="create(form, 'Medicine')"><h2>New Event</h2><br>
   <label for="datetime">Date:<br>
     <p class="input-group" ng-controller="DatepickerCtrl">
       <input type="text" class="form-control" datepicker-popup="MM/dd/yyyy" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="datetime" ng-model="event.datetime" />
@@ -10,11 +10,9 @@
       <timepicker ng-model="mytime"></timepicker>
     </div>
   </label><br>
-  <label for="name">Name:<br>
-    <input type="text" name="name" ng-model="event.name">
+  <label for="meds">Meds:<br>
+    <input type="text" name="meds" ng-model="event.meds" ng-required="true">
   </label><br>
-  <label for="amount">Amount:<br>
-    <input type="text" name="amount" ng-model="event.amount">
-  </label><br>
-  <input type="submit" value="Submit" ng-disabled="newProduct.$invalid"/>
+  <input type="submit" value="Submit"/>
+  <a ng-click="form.setForm(0); clearformdata()">Back</a>
 </form>

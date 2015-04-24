@@ -8,16 +8,38 @@
 				<h2 class="subtitle">Simplifies record keeping of a family's medical history</h2>
 
 				<h3 class="tagline"><strong>
-					Quickly add and track important data relating to doctor visits and medication,<br>
-					and symptoms.  Access primary care numbers quickly in case of emergency.
+					Quickly add and track important data relating to a loved one's illness<br>
+
 				</strong>
 				</h3>
+			<button type="button" class="modalButton" data-toggle="modal" data-target="#myModal">
+      Learn More
+      </button>
 
-				<p>Site description?</p>
-				<button><%= link_to 'Access App', app_path %></button>
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="learnMore" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			        	<span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="learnMore">About Us</h4>
+			      </div>
+			      <div class="modal-body">
+			        Accurate record keeping of a loved one's illness is important.  At Crummy
+			        we simplify the process of recording temperatures, symptoms, and medication schedules,
+			        as well as primary nurse and doctor numbers in an intuitive, easy to use app.
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<br /><br />
+			<button><%= link_to 'Access App', app_path %></button>
 			</div>
 		</div>
-
 	</div>
 </section>
 
