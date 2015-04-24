@@ -1,4 +1,4 @@
- <div class="container" ng-show="kidlist.current_kid">
+  <div class="container-fluid" ng-show="kidlist.current_kid">
     <h1 class="text-center">Events</h1>
 
     <div class="btn-group" dropdown is-open="status.isopen" ng-controller="DropdownCtrl" ng-show="form.isSet(0)">
@@ -13,45 +13,18 @@
       </ul>
     </div>
   </div>
-
   <div class="list-group-item" ng-repeat="event in events">
-    <h3 class="text-center">Date: {{event.datetime}}</h3>
-    <h3 class="text-center">Type: {{event.type}}</h3>
-    <h3>{{event.meds}}</h3>
-    <h3>{{event.description}}</h3>
-    <h3>{{event.temperature}}</h3>
-    <h3>{{event.height}}</h3>
-    <h3>{{event.weight}}</h3>
-    <a class="btn btn-primary btn-lg" ng-click="duplicate(event)">Duplicate</a>
-    <a class="btn btn-primary btn-lg" ng-click="delete(event)">Delete</a>
-    <a class="btn btn-primary btn-lg" ng-click="form.setForm(5)">Edit</a>
-    <form name="editEvent" ng-submit="edit(form, event)" ng-show="form.isSet(5)"><h2>Edit Event</h2><br>
-    <label for="datetime">Date:<br>
-      <p class="input-group" ng-controller="DatepickerCtrl">
-        <input type="text" class="form-control" datepicker-popup="MM/dd/yyyy" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="datetime" ng-model="event.datetime" />
-        <span class="input-group-btn">
-          <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-        </span>
-      </p>
-      <div ng-controller="TimepickerCtrl">
-        <timepicker ng-model="mytime"></timepicker>
-      </div>
-    </label><br>
-    <label for="meds">Meds:<br>
-      <input type="text" name="meds" ng-model="event.meds">
-    </label><br>
-    <label for="description">Description:<br>
-      <input type="text" name="description" ng-model="event.description">
-    </label><br>
-    <label for="temperature">Temperature:<br>
-      <input type="text" name="temperature" ng-model="event.temperature">
-    </label><br>
-    <label for="height">Height:<br>
-      <input type="text" name="height" ng-model="event.height">
-    </label><br>
-    <label for="weight">Weight:<br>
-      <input type="text" name="weight" ng-model="event.weight">
-    </label><br>
-    <input type="submit" value="Submit"/>
-  </form>
+    <div class='container-fluid' ng-controller="KidEditController">
+      <h3 class="text-center">Date: {{event.datetime | date: 'MM/dd/yyyy'}}</h3>
+      <h3 class="text-center">Type: {{event.type}}</h3>
+      <h3 ng-show="event.meds">Meds: {{event.meds}}</h3>
+      <h3>{{event.description}}</h3>
+      <h3 ng-show="event.temperature">{{event.temperature}} degrees</h3>
+      <h3 ng-show="event.height">Height: {{event.height}}</h3>
+      <h3 ng-show="event.weight">Weight: {{event.weight}} lbs</h3>
+      <a class="btn btn-primary btn-lg" ng-click="duplicate(event)">Duplicate</a>
+      <a class="btn btn-primary btn-lg" ng-click="delete(event)">Delete</a>
+      <a class="btn btn-primary btn-lg" ng-click="showform = !showform">Edit</a>
+      <event-edit></event-edit>
+    </div>
   </div>

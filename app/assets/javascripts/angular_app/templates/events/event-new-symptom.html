@@ -1,9 +1,9 @@
 <form name="newEvent" ng-submit="create(form, 'Symptom')"><h2>New Event</h2><br>
   <label for="datetime">Date:<br>
     <p class="input-group" ng-controller="DatepickerCtrl">
-      <input type="text" class="form-control" datepicker-popup="MM/dd/yyyy" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="datetime" ng-model="event.datetime" />
+      <input type="text" style="length: 50px;" class="form-control" datepicker-popup="MM/dd/yyyy" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="datetime" ng-model="event.datetime"/>
       <span class="input-group-btn">
-        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        <button type="button" style="float: left" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
       </span>
     </p>
     <div ng-controller="TimepickerCtrl">

@@ -82,6 +82,8 @@
   });
 
   app.controller('DatepickerCtrl', function ($scope) {
+    $scope.date = new Date();
+
     $scope.open = function($event) {
       $event.preventDefault();
       $event.stopPropagation();
@@ -93,6 +95,10 @@
 
   app.controller('TimepickerCtrl', function ($scope, $log) {
     $scope.mytime = new Date();
+  });
+
+  app.controller('KidEditController', function ($scope){
+    $scope.showform = false;
   });
 
 })();
