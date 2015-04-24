@@ -1,20 +1,20 @@
 <form name="newEvent" ng-submit="create(form, 'HeightWeight')"><h2>New Event</h2><br>
   <label for="datetime">Date:<br>
     <p class="input-group" ng-controller="DatepickerCtrl">
-      <input type="text" class="form-control" datepicker-popup="MM/dd/yyyy" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="datetime" ng-model="event.datetime" />
+      <input type="text" style="length: 50px;" class="form-control" datepicker-popup="MM/dd/yyyy" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" name="datetime" ng-model="event.datetime" init-date="date"/>
       <span class="input-group-btn">
-        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        <button type="button" style="float: left" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
       </span>
     </p>
     <div ng-controller="TimepickerCtrl">
       <timepicker ng-model="mytime"></timepicker>
     </div>
   </label><br>
-  <label for="height">Height:<br>
-    <input type="text" name="height" ng-model="event.height" ng-required="true">
+  <label for="height">Height(in inches):<br>
+    <input type="number" name="height" ng-model="event.height" ng-required="true">
   </label><br>
   <label for="weight">Weight:<br>
-    <input type="text" name="weight" ng-model="event.weight" ng-required="true">
+    <input type="number" name="weight" ng-model="event.weight" ng-required="true">
   </label><br>
   <input type="submit" value="Submit"/>
   <a ng-click="form.setForm(0); clearformdata()">Back</a>
