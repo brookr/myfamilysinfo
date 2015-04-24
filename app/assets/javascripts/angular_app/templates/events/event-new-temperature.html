@@ -6,9 +6,7 @@
         <button type="button" style="float: left" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
       </span>
     </p>
-    <div ng-controller="TimepickerCtrl">
-      <timepicker ng-model="mytime"></timepicker>
-    </div>
+    <timepicker ng-model="event.time"></timepicker>
   </label><br>
   <label for="temperature">Temperature:<br>
     <input type="number" name="temperature" ng-model="event.temperature" ng-required="true">
