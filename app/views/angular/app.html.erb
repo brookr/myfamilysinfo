@@ -1,8 +1,6 @@
 <div ng-app='crummy'>
-  <div ng-hide='current_user'>
-    <!-- Login/signup form will go here -->
-  </div>
-  <div ng-controller='KidListController as kidlist' ng-init='getKidList()'>
+  <login-form ng-hide="current_user"></login-form>
+  <div ng-controller='KidListController as kidlist' ng-show="current_user">
     <div class='container'>
       <div class='row'>
         <div class='col-sm-4'>

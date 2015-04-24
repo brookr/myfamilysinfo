@@ -8,7 +8,7 @@ TODO
 
 There are a set number of possible errors to receive as a response, with associated HTTP status codes. These errors can apply to any endpoint. Other more specific errors are listed in the notes of the endpoint where they are applicable.
 
-## Missing Resource
+### Missing Resource
 If you attempt to access a resource ID that does not exist, you will receive this error as a response.
 
 Response:
@@ -17,7 +17,7 @@ Response:
 	Body:
 	{ "message":"Object does not exist." }
 
-## Missing Authentication Token
+### Missing Authentication Token
 If you attempt to access an authentication-blocked resources, you will receive this error as a response.
 
 Response:
@@ -26,7 +26,7 @@ Response:
 	Body:
 	{ "message":"Authentication token missing or invalid" }
 
-## Invalid JSON Data
+### Invalid JSON Data
 If your JSON object is incorrectly formatted, you will receive this error as a response.
 
 Response:
@@ -35,7 +35,7 @@ Response:
 	Body:
 	{ “message”:”Problems parsing JSON” }
 
-## Invalid Object Data
+### Invalid Object Data
 If the content of your object is incorrectly formatted (sending a string where a number is required, etc), required fields are missing, or unique fields contain duplicates (unique email, etc), you will receive this error as a response.
 Possible values for the "code" key of an error are:
 
@@ -57,6 +57,27 @@ Response:
 			}
 		]
 	}
+
+---
+
+#Authorization
+
+Some endpoints on the API will require an authentication token to receive anything but a 401 error. The token can be provided two ways:
+
+### Authorization Header
+
+You can pass the token as a part of the request headers, in the standard HTTP Authorization header. For example:
+
+		GET /api/v1/kids
+		Authorization: Token token=<insert token here>
+
+### Query parameter
+
+You can also pass the token as part of the query parameters in the URL. For example:
+
+		GET /api/v1/kids?auth_token=<insert token here>
+
+Generally, this method is less secure, and the header is preferred.
 
 ---
 

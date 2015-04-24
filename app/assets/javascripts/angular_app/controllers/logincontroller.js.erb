@@ -1,0 +1,59 @@
+(function() {
+  var app = angular.module('login-user', []);
+
+  app.controller('LoginController', ['$http', '$scope', '$rootScope', function ($http, $scope, $rootScope) {
+    login = this;
+    login.credentials = {};
+    login.errors = [];
+
+    user = localStorage.getItem('user');
+    if(user) {
+      loginUser(JSON.parse(user));
+    }
+
+    login.login = function(){
+      login.errors = [];
+
+      $http.post('/api/v1/sessions', login.credentials)
+        .success(function(data){
+          loginUser(data);
+        })
+        .error(function(data, status){
+          login.errors.push("Invalid email or password");
+        });
+    };
+
+    function loginUser(user) {
+      localStorage.setItem('user', JSON.stringify(user));
+      $rootScope.current_user = user;
+      $rootScope.getKidList();
+    }
+
+    login.signup = function(){
+      login.errors = [];
+
+      $http.post('/api/v1/users', login.credentials)
+        .success(function(data){
+          loginUser(data);
+        })
+        .error(function(data){
+          console.log(data);
+          displayErrors(data);
+        });
+    };
+
+    function displayErrors ( data ) {
+      $.each(data.errors, function(key, value) {
+        switch(value.code){
+          case 'unique_field':
+            login.errors.push("That email address is taken (did you mean to click Login?)");
+            break;
+        }
+      });
+    }
+
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+  }]);
+})();
