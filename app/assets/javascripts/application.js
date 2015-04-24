@@ -12,8 +12,6 @@
 //
 //= require angular_app
 //= require modernizr.custom
-//= require_tree .
 //= require jquery
 //= require jquery_ujs
-//= require angular-ui-bootstrap-tpls
-
+//= require ui-bootstrap-tpls-0.12.1
