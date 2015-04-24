@@ -1,0 +1,16 @@
+#kid_details {
+  input {
+    display: none;
+  }
+  .field .span {
+    display: inline-block;
+  }
+}
+#kid_details.editing {
+  #input {
+    display: inline-block;
+  }
+  .field .span {
+    display: none;
+  }
+}

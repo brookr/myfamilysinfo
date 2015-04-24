@@ -1,7 +1,7 @@
 (function(){
   var app = angular.module('kid-details', []);
 
-  app.controller('KidDetailController', [ '$http', function($http){
+  app.controller('KidDetailController', [ '$http', '$rootScope', function($http, $rootScope){
     kiddetails = this;
     kiddetails.kid = {};
 
@@ -11,5 +11,6 @@
           kiddetails.kid = data;
         });
     };
+    $rootScope.getKidDetails = kiddetails.show;
   }]);
 })();

@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 ng-show='kidlist.current_kid'>{{kidlist.current_kid.name}}</h4>
+    <h4 ng-hide='kidlist.current_kid'>Kid Details</h4>
+  </div>
+  <div class="panel-body" id='kid_details' ng-class='{ editing: kiddetail.editing }'>
+    <div class="container-fluid" ng-show='kidlist.current_kid'><div class="row">
+      <div class="col-xs-6">
+        <div class="field">
+          <label for='dob'>Date of Birth</label>
+          <span id='dob'>{{kidlist.current_kid.dob}}</span>
+          <input id='dob' ng-model="kidlist.current_kid.dob"></input>
+        </div>
+      </div>
+      <div class="col-xs-6">
+
+      </div>
+    </div></div>
+    <div ng-hide='kidlist.current_kid'>
+      Select or add a kid!
+    </div>
+  </div>
+</div>
