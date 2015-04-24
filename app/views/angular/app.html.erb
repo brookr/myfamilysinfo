@@ -4,28 +4,15 @@
     <div class='container'>
       <div class='row'>
         <div class='col-sm-4'>
-          <div id='kidlist' class='list-group'>
-            <div class='list-group-item'><h4>Kids</h4></div>
-            <a ng-repeat='kid in kidlist.kids' class='list-group-item' ng-class='{ active: kidlist.current_kid == kid }' ng-click='kidlist.setKid(kid)'>
-              {{kid.name}}
-            </a>
-            <div class='list-group-item' ng-hide='kidlist.show_form'>
-              <button class='btn btn-default' ng-click='kidlist.show_form = true'>Add Kid</button>
-            </div>
-            <form class='list-group-item form-inline' ng-submit='kidlist.create()' ng-show='kidlist.show_form'>
-                <input class='form-control' ng-model='kidlist.new_kid.name'></input>
-                <button type='submit' class='btn btn-default'>Save</button>
-            </form>
-          </div>
+          <kid-list></kid-list>
         </div>
         <div class='col-sm-8'>
-          <div class='container'>
+          <div class='container-fluid'>
             <div class='row'><div class='col-xs-12'>
-              <!-- kid details here -->
-
+              <kid-details-div></kid-details-div>
             </div>
             <div class='row'><div class='col-xs-12'>
-              <div class="container" ng-app="kid-events" ng-controller="KidEventController">
+              <div class="container-fluid" ng-app="kid-events" ng-controller="KidEventController">
                 <event-index></event-index>
                 <event-forms></event-forms>
               </div>

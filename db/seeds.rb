@@ -24,6 +24,10 @@ end
 45.times do
   Kid.new.tap do |k|
     k.name = FFaker::Name.first_name
+    k.dob = Date.new(2000, 1, 2)
+    k.nurse_phone = FFaker::PhoneNumber.phone_number
+    k.insurance_id = FFaker::Internet.password
+    k.notes = FFaker::Lorem.sentence
     k.save!
   end
 end

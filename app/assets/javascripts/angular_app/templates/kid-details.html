@@ -1,0 +1,40 @@
+<div class="panel panel-default" ng-controller="KidDetailController as kiddetail">
+  <div class="panel-heading">
+    <h4 ng-show='kidlist.current_kid'>{{kidlist.current_kid.name}}</h4>
+    <h4 ng-hide='kidlist.current_kid'>Details</h4>
+  </div>
+  <div class="panel-body" id='kid_details' ng-class='{ editing: kiddetail.editing }'>
+    <div class="container-fluid" ng-show='kidlist.current_kid'><div class="row">
+      <button class="btn btn-default pull-right" ng-click='kiddetail.editing = true' ng-hide='kiddetail.editing'>Edit</button>
+      <button class="btn btn-success pull-right" ng-click='kiddetail.update()' ng-show='kiddetail.editing'>Save Changes</button>
+      <button class="btn btn-danger pull-right" ng-click='kiddetail.delete()' ng-show='kiddetail.editing'>Delete Kid</button>
+      <div class="col-xs-6 form-inline">
+        <div class="field">
+          <label for='dob'>Date of Birth</label>
+          <input id='dob' ng-model="kiddetail.kid.dob"></input>
+          <span id='dob'>{{kiddetail.kid.dob}}</span>
+        </div>
+        <div class="field">
+          <label for='dob'>Insurance ID</label>
+          <input id='dob' ng-model="kiddetail.kid.insurance_id"></input>
+          <span id='dob'>{{kiddetail.kid.insurance_id}}</span>
+        </div>
+        <div class="field">
+          <label for='dob'>Nurse's Phone</label>
+          <input id='dob' ng-model="kiddetail.kid.nurse_phone"></input>
+          <span id='dob'>{{kiddetail.kid.nurse_phone}}</span>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="field">
+          <label for='dob'>Notes</label>
+          <textarea class="form-control" id='dob' ng-model="kiddetail.kid.notes"></textarea>
+          <span id='dob'>{{kiddetail.kid.notes}}</span>
+        </div>
+      </div>
+    </div></div>
+    <div ng-hide='kidlist.current_kid'>
+      Select or add a kid!
+    </div>
+  </div>
+</div>
