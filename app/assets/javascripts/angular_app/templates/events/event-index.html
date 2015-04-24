@@ -1,6 +1,8 @@
   <div class="container-fluid" ng-show="kidlist.current_kid">
     <h1 class="text-center">Events</h1>
-
+    <div class="container">
+      <event-forms></event-forms>
+    </div>
     <div class="btn-group" dropdown is-open="status.isopen" ng-controller="DropdownCtrl" ng-show="form.isSet(0)">
       <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
         Create a new Event <span class="caret"></span>
@@ -16,6 +18,7 @@
   <div class="list-group-item" ng-repeat="event in events">
     <div class='container-fluid' ng-controller="KidEditController">
       <h3 class="text-center">Date: {{event.datetime | date: 'MM/dd/yyyy'}}</h3>
+      <h3>{{event.time}}</h3>
       <h3 class="text-center">Type: {{event.type}}</h3>
       <h3 ng-show="event.meds">Meds: {{event.meds}}</h3>
       <h3>{{event.description}}</h3>
