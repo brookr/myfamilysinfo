@@ -4,11 +4,17 @@
   app.factory('loginEventHandler', function() {
     return {
       callbacks: [],
+      triggered: false,
+
       add: function(callback){
         this.callbacks.push(callback);
+        if(triggered) {
+          callback();
+        }
       },
 
       trigger: function(){
+        triggered = true;
         $.each(this.callbacks, function(i, callback){
           callback();
         });
