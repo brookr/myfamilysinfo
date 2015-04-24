@@ -23,6 +23,12 @@
         });
     };
 
+    login.logout = function(){
+      localStorage.removeItem('user');
+      $rootScope.current_user = null;
+      window.location.href = '/'    ;
+    };
+
     function loginUser(user) {
       localStorage.setItem('user', JSON.stringify(user));
       $rootScope.current_user = user;

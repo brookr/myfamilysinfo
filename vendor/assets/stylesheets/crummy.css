@@ -159,12 +159,12 @@ a:hover, a:active { color:#fff; text-decoration: underline; }
 .h3 {
 	color:black;
 }
-#myModal{
-	color:black;
+.mainBody{
+	background-color: #F3F3EE;
 }
-.modalButton{
-	color:black;
-}
+
+
+
 /***********************************************************/
 /*                   Theme: text shadows                   */
 /***********************************************************/
