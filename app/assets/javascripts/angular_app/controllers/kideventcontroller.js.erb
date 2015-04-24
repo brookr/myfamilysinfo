@@ -31,7 +31,7 @@
 
     $scope.create = function(form, type) {
       $scope.event.type = type;
-      $http.post('/api/v1/kids/' + $scope.kidlist.current_kid.id + '/events?auth_token=' + $scope.auth_token, $scope.event)
+      $http.post('/api/v1/kids/' + $scope.kidlist.current_kid.id + '/events?auth_token=' + $rootScope.current_user.authentication_token, $scope.event)
         .success(function(data) {
           form.setForm(0);
           $scope.events.push(data);
