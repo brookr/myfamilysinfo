@@ -48,7 +48,7 @@ body {
 /*                      Typography                      */
 /********************************************************/
 a { color:#000; text-decoration: none; }
-a:hover, a:active { color:#fff; text-decoration: underline; }
+a:hover, a:active { color:#blue; text-decoration: none; }
 .lead {
 	font-weight:normal;
 	font-size:1.5em;
@@ -164,7 +164,6 @@ a:hover, a:active { color:#fff; text-decoration: underline; }
 }
 
 
-
 /***********************************************************/
 /*                   Theme: text shadows                   */
 /***********************************************************/
@@ -197,7 +196,7 @@ a:hover, a:active { color:#fff; text-decoration: underline; }
 	color:rgba(255,255,255,.8);
 }
 .theme-invert .btn:hover {
-	color:#fff;
+	color:blue;
 }
 .theme-invert .btn-link {
 	color:rgba(0,0,0,.8);
