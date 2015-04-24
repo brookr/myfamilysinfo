@@ -75,6 +75,7 @@ a:hover, a:active { color:#fff; text-decoration: underline; }
 	line-height:1.3em;
 	font-weight:normal;
 	margin-bottom:75px;
+	color:black;
 }
 
 @media (max-width: 767px) {
@@ -149,6 +150,7 @@ a:hover, a:active { color:#fff; text-decoration: underline; }
   border:0;
   font-weight: bold;
   font-size: 16px;
+  color:black;
 }
 .panel {
 	border:0;
@@ -157,7 +159,12 @@ a:hover, a:active { color:#fff; text-decoration: underline; }
 .h3 {
 	color:black;
 }
-
+#myModal{
+	color:black;
+}
+.modalButton{
+	color:black;
+}
 /***********************************************************/
 /*                   Theme: text shadows                   */
 /***********************************************************/
