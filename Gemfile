@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.2.2'
 
 gem 'active_model_serializers'
+gem 'angular-ui-bootstrap-rails'
 gem 'bcrypt'
 gem 'coffee-rails'
 gem 'ffaker'

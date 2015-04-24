@@ -6,9 +6,31 @@
         <div class="navbar-header">
          <h3>Crummy</h3>
         </div>
-        <button type="button" class="btn btn-default navbar-btn pull-right"
-        ng-show="current_user" ng-click="loginCtrl.logout()">Sign Out</button>
-      </div>
+          <button type="button" class="btn btn-default navbar-btn pull-right"
+          ng-show="current_user" ng-click="loginCtrl.logout()">Sign Out</button>
+         <!-- Modal -->
+           <button type="button" data-toggle="modal" data-target="#update" class="btn btn-default navbar-btn pull-right"
+          ng-show="current_user">Edit</button>
+          <!-- Modal -->
+          <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="updateUser" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="learnMore">Update User Info</h4>
+                </div>
+                <div class="modal-body">
+                  <p><input type="text" class="span3" name="email" id="email" placeholder="Enter Email" value="" ng-required="true" ng-model="loginCtrl.credentials.email"></p>
+                  <p><input type="password" class="span3" id="loginPassword" name="loginPassword" placeholder="Enter Password" ng-required="true" ng-model="loginCtrl.credentials.password"></p>
+                  <p><button type="submit" class="btn btn-success" ng-click="loginForm.$valid && loginCtrl.update()">Update</button></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
    </nav>
   <login-form ng-hide="current_user"></login-form>
 
