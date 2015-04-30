@@ -5,7 +5,7 @@ module API
 
       def index
         @kids = @current_user.kids
-        render json: @kids, each_serializer: API::V1::KidShortSerializer, status: 200
+        render json: @kids, status: 200
       end
 
       def show

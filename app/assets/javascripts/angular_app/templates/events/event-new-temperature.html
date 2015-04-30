@@ -11,6 +11,8 @@
   <label for="temperature">Temperature:<br>
     <input type="number" name="temperature" ng-model="event.temperature" ng-required="true">
   </label><br>
-  <input type="submit" value="Submit"/>
-  <a ng-click="form.setForm(0); clearformdata()">Back</a>
+  <div class="submit-buttons">
+    <input class="btn btn-primary btn-sm" type="submit" value="Submit"/>
+    <a class="btn btn-primary btn-sm" ng-click="form.setForm(0); clearformdata()">Back</a>
+  </div>
 </form>
