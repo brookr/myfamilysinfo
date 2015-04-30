@@ -87,7 +87,7 @@
 
   }]);
 
-  app.controller('DropdownCtrl', function ($scope) {
+  app.controller('DropdownCtrl', [ '$scope',  function ($scope) {
     $scope.status = {
       isopen: false
     };
@@ -98,9 +98,9 @@
       $scope.status.isopen = !$scope.status.isopen;
     };
 
-  });
+  }]);
 
-  app.controller('DatepickerCtrl', function ($scope) {
+  app.controller('DatepickerCtrl', [ '$scope', function ($scope) {
     $scope.date = new Date();
 
     $scope.open = function($event) {
@@ -110,10 +110,10 @@
       $scope.opened = true;
     };
 
-  });
+  }]);
 
-  app.controller('KidEditController', function ($scope){
+  app.controller('KidEditController', [ '$scope', function ($scope){
     $scope.showform = false;
-  });
+  }]);
 
 })();
